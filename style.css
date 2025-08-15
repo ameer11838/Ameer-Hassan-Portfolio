@@ -116,7 +116,7 @@ a:hover {
   list-style: none;
 }
 
-.mennu-links.open {
+.menu-links.open {
   max-height: 300px;
 }
 
@@ -143,3 +143,5 @@ a:hover {
 .hamburger-icon span:first-child {
   transform: none;
 }
+
+/*Sections */
