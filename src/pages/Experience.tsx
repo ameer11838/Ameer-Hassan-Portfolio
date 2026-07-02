@@ -11,15 +11,15 @@ export default function Experience() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
+          className="mb-10"
         >
-          <p className="section-label">Career</p>
           <h1 className="page-title">Experience</h1>
           <p className="page-subtitle">
-            Companies and roles I've had the opportunity to work with.
+            {experiences.length} roles &middot; {experiences.filter((e) => e.current).length} current
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="grid sm:grid-cols-2 gap-5">
           {experiences.map((exp, i) => (
             <ExperienceCard key={exp.id} experience={exp} index={i} />
           ))}

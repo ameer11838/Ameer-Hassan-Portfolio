@@ -8,6 +8,7 @@ export interface Experience {
   current: boolean
   description: string
   tech: string[]
+  logoUrl: string
   logoText: string
   logoBg: string
   logoColor: string
@@ -31,6 +32,7 @@ export interface LeadershipItem {
   title: string
   organization: string
   type: string
+  logoUrl: string
   logoText: string
   logoBg: string
   logoColor: string

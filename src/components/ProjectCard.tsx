@@ -1,15 +1,36 @@
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Trophy } from 'lucide-react'
+import { Github, ExternalLink, Trophy, MessageSquare, Code2, Sun, Landmark, Activity, Eye } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import type { Project } from '../types'
 
-// Flat, non-gradient accent color per project — replace with real screenshot later
+// Flat solid accent color per project
 const ACCENT_COLORS: Record<string, string> = {
-  'discord-chat': '#0a1526',
-  'ai-code-editor': '#0e0820',
-  'solar-physics': '#180e00',
-  'masjidpay': '#001a0d',
-  'recova': '#190008',
+  'discord-chat':      '#0a1526',
+  'ai-code-editor':    '#0e0820',
+  'solar-physics':     '#180e00',
+  'masjidpay':         '#001a0d',
+  'recova':            '#190008',
   'transparency-lens': '#001616',
+}
+
+// Representative icon per project
+const PROJECT_ICONS: Record<string, LucideIcon> = {
+  'discord-chat':      MessageSquare,
+  'ai-code-editor':    Code2,
+  'solar-physics':     Sun,
+  'masjidpay':         Landmark,
+  'recova':            Activity,
+  'transparency-lens': Eye,
+}
+
+// Icon tint color (should contrast against the dark accent bg)
+const ICON_COLORS: Record<string, string> = {
+  'discord-chat':      'rgba(96,165,250,0.35)',
+  'ai-code-editor':    'rgba(167,139,250,0.35)',
+  'solar-physics':     'rgba(251,191,36,0.35)',
+  'masjidpay':         'rgba(52,211,153,0.35)',
+  'recova':            'rgba(251,113,133,0.35)',
+  'transparency-lens': 'rgba(34,211,238,0.35)',
 }
 
 interface Props {
@@ -19,6 +40,8 @@ interface Props {
 
 export default function ProjectCard({ project, index }: Props) {
   const accentColor = ACCENT_COLORS[project.id] ?? '#111111'
+  const Icon = PROJECT_ICONS[project.id]
+  const iconColor = ICON_COLORS[project.id] ?? 'rgba(255,255,255,0.2)'
   const urlSlug = project.id.replace(/-/g, '')
 
   return (
@@ -46,32 +69,33 @@ export default function ProjectCard({ project, index }: Props) {
           </div>
         </div>
 
-        {/* Viewport — flat color + dot grid */}
+        {/* Viewport — flat color + dot grid + project icon */}
         <div
           className="h-44 relative flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: accentColor }}
         >
+          {/* Subtle dot grid */}
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage:
-                'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
               backgroundSize: '20px 20px',
             }}
           />
-          {/* Large muted initial — replace with <img> once you have screenshots */}
-          <span
-            className="relative select-none font-black text-white/[0.05]"
-            style={{ fontSize: '110px', lineHeight: 1 }}
-          >
-            {project.name.charAt(0)}
-          </span>
+          {/* Project icon */}
+          {Icon && (
+            <Icon
+              size={52}
+              strokeWidth={1.25}
+              style={{ color: iconColor, position: 'relative', zIndex: 1 }}
+            />
+          )}
         </div>
       </div>
 
       {/* ── Card body ── */}
       <div className="flex flex-col flex-1 p-5">
-        {/* Badges row */}
+        {/* Badges */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
           <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-indigo-500/[0.1] text-indigo-400 border border-indigo-500/20">
             {project.category}
@@ -102,12 +126,8 @@ export default function ProjectCard({ project, index }: Props) {
         {/* Links */}
         <div className="flex items-center gap-4 pt-3 border-t border-white/[0.05]">
           {project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-neutral-400 hover:text-white text-xs font-medium transition-colors duration-150"
-            >
+            <a href={project.github} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-neutral-400 hover:text-white text-xs font-medium transition-colors duration-150">
               <Github size={13} /> Code
             </a>
           ) : (
@@ -116,12 +136,8 @@ export default function ProjectCard({ project, index }: Props) {
             </span>
           )}
           {project.live ? (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-neutral-400 hover:text-white text-xs font-medium transition-colors duration-150"
-            >
+            <a href={project.live} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-neutral-400 hover:text-white text-xs font-medium transition-colors duration-150">
               <ExternalLink size={13} /> Live
             </a>
           ) : (
