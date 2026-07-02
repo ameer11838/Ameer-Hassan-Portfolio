@@ -1,9 +1,70 @@
-@media screen and (max-width: 1200px) {
-  #desktop-nav {
-    display: none;
+/* For large desktops */
+@media screen and (min-width: 1200px) {
+  #profile .section__pic-container {
+    height: 500px;
+    width: 500px;
   }
 
-  #hamburger-nav {
-    display: flex;
+  #profile .title {
+    font-size: 4rem;
+  }
+
+  #profile .section__text__p2 {
+    font-size: 2rem;
+  }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  #profile {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  #profile .section__pic-container {
+    height: 300px;
+    width: 300px;
+  }
+
+  #profile .title {
+    font-size: 2.5rem;
+  }
+
+  #profile .section__text__p2 {
+    font-size: 1.25rem;
+  }
+
+  section {
+    margin: 0 2rem;
+  }
+  w .about-containers {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  #profile .section__pic-container {
+    height: 250px;
+    width: 250px;
+  }
+
+  #profile .title {
+    font-size: 2rem;
+  }
+
+  #profile .section__text__p2 {
+    font-size: 1rem;
+  }
+
+  section {
+    margin: 0 1rem;
+  }
+
+  .about-containers {
+    flex-direction: column;
+    align-items: center;
   }
 }
