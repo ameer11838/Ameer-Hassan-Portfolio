@@ -17,6 +17,9 @@ export interface Project {
   description: string
   category: ProjectCategory
   imageSrc: string
+  /** How to render the cover: a wide screenshot (cover-fill), a square mark
+   *  (centered on charcoal), or none (typographic cover). Defaults to screenshot. */
+  imageKind?: 'screenshot' | 'mark' | 'text'
   tech: string[]
   githubUrl: string
   demoUrl: string

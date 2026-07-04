@@ -1,191 +1,167 @@
 import { motion } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import { skillGroups } from '../data/skills'
 import { logos, profilePhoto, profilePhotoFallback } from '../data/assets'
 
-const inView = {
-  initial: { opacity: 0, y: 20 },
+const rise = {
+  initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
 }
 
 export default function About() {
   return (
     <PageTransition>
-      <div className="mx-auto max-w-[1240px] px-6 pt-20 pb-24">
+      <div className="mx-auto max-w-[1200px] px-6 pt-28 pb-24">
 
-        {/* ── Editorial header ────────────────────────── */}
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 pt-8"
+          transition={{ duration: 0.6 }}
+          className="mb-20"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <span className="marker">Colophon</span>
-            <div className="h-px flex-1 max-w-[240px]" style={{ background: 'var(--hairline)' }} />
-          </div>
-
-          <h1 className="display text-white mb-6" style={{ fontSize: 'clamp(56px, 9vw, 128px)' }}>
-            About
+          <p className="eyebrow mb-6">About</p>
+          <h1 className="display text-white mb-8" style={{ fontSize: 'clamp(56px, 9vw, 128px)' }}>
+            Who I am,
+            <br />
+            <span className="italic-serif" style={{ fontWeight: 500, color: 'var(--text-2)' }}>in short.</span>
           </h1>
-
-          <p className="serif italic text-[20px] leading-relaxed max-w-3xl" style={{ color: 'var(--text-2)' }}>
-            A short essay on who I am, how I got here, and what I'm trying to build.
-          </p>
         </motion.header>
 
-        {/* ── Image + drop cap essay ──────────────────── */}
-        <div className="grid gap-14 lg:grid-cols-[300px_1fr]">
+        {/* Portrait + Essay */}
+        <div className="grid gap-16 lg:grid-cols-[340px_1fr] items-start mb-24">
 
-          {/* Left: sticky photo column */}
-          <motion.aside
-            {...inView}
-            className="lg:sticky lg:top-24 lg:self-start"
-          >
+          {/* Portrait */}
+          <motion.aside {...rise} className="lg:sticky lg:top-24">
             <div
-              className="overflow-hidden mb-4"
-              style={{ aspectRatio: '3/4', borderRadius: 2 }}
+              className="group relative overflow-hidden mb-5"
+              style={{
+                aspectRatio: '4/5',
+                borderRadius: 4,
+                border: '1px solid var(--hairline-2)',
+              }}
             >
               <img
                 src={profilePhoto}
                 alt="Ameer Hassan"
-                className="h-full w-full object-cover object-top"
+                className="h-full w-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).src = profilePhotoFallback }}
               />
             </div>
-            <p className="marker italic-caps mb-1" style={{ letterSpacing: 0, textTransform: 'none' }}>
-              — Ameer Hassan
+
+            <p className="italic-serif text-[15px]" style={{ color: 'var(--text-2)' }}>
+              Ameer Hassan
             </p>
-            <p className="marker" style={{ color: 'var(--text-4)' }}>b. 2005 · Newark, NJ</p>
+            <p className="text-[12.5px] mt-0.5" style={{ color: 'var(--text-4)' }}>
+              b. 2005 · Newark, NJ
+            </p>
 
             {/* Facts */}
-            <div className="mt-8 space-y-2.5 text-[13px]">
+            <dl className="mt-8 space-y-3 text-[13.5px]">
               {[
-                ['Studying at', 'NJIT'],
-                ['Working at',  'Fiserv'],
-                ['Living in',   'New Jersey'],
-                ['Graduating',  '2027'],
+                ['Studying at',   'NJIT'],
+                ['Working at',    'Fiserv'],
+                ['Living in',     'New Jersey'],
+                ['Graduating',    '2027'],
+                ['Off the clock', 'Wrestling · hoops · space'],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline gap-3">
-                  <span className="marker shrink-0" style={{ letterSpacing: 0, textTransform: 'none', color: 'var(--text-4)' }}>
-                    {k}
-                  </span>
-                  <span className="flex-1 h-px translate-y-[-3px]" style={{ background: 'var(--hairline)' }} />
-                  <span style={{ color: 'var(--text)' }}>{v}</span>
+                  <dt className="shrink-0" style={{ color: 'var(--text-4)' }}>{k}</dt>
+                  <span className="flex-1 rule translate-y-[-3px]" />
+                  <dd style={{ color: 'var(--text)' }}>{v}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </motion.aside>
 
-          {/* Right: essay */}
-          <motion.article {...inView} className="max-w-2xl">
-            <p
-              className="text-[19px] leading-[1.75] mb-6"
-              style={{ color: 'var(--text)' }}
-            >
-              <span
-                className="serif float-left text-[88px] font-black leading-[0.85] pr-3 pt-1 pb-1"
-                style={{ color: 'var(--blue-2)' }}
-              >
-                I
-              </span>
-              &apos;m a Computer Science student at NJIT&apos;s{' '}
-              <span className="italic-caps">Albert Dorman Honors College</span>, minoring in
-              Applied Mathematics. My work sits at the intersection of software engineering,
-              AI/ML, and fintech — and I care less about the stack and more about whether what
-              I&apos;m building actually solves a real problem.
+          {/* Essay */}
+          <motion.article {...rise} className="max-w-2xl">
+            <p className="text-[22px] leading-[1.55] font-medium tracking-tight text-white mb-8" style={{ letterSpacing: '-0.01em' }}>
+              I&apos;m a Computer Science student at NJIT&apos;s Honors College, minoring in Applied Math.
+              I got into this because I liked that a few lines of code could quietly do the work of a
+              hundred people — that idea still drives most of what I build.
             </p>
 
             <p className="text-[17px] leading-[1.75] mb-6" style={{ color: 'var(--text-2)' }}>
-              I got into this because I liked the idea of writing a few dozen lines of code that
-              could quietly do the work of a hundred people. That instinct — <span className="italic-caps">automation
-              as leverage</span> — is what I&apos;ve chased at Fiserv (building an AI test-case agent),
-              at Arkra (SEC EDGAR pipelines with Playwright + OpenAI), and in the NJIT AI/ML lab
-              (a Random Forest classifier for solar activity).
+              These days that looks like an AI test-case agent at Fiserv, SEC data pipelines at
+              Arkra, and a solar-activity classifier in NJIT&apos;s ML lab. Different problems, same
+              thing underneath: I care less about the stack and more about whether the thing actually
+              works for the person on the other end of it.
             </p>
 
             <p className="text-[17px] leading-[1.75] mb-6" style={{ color: 'var(--text-2)' }}>
-              I&apos;ve been the beneficiary of some incredible programs — <span className="italic-caps">Break
-              Through Tech AI</span> (Cornell), <span className="italic-caps">SEO Tech</span>,{' '}
-              <span className="italic-caps">BNY Sophomore Summit</span>,{' '}
-              <span className="italic-caps">America Needs You</span>,{' '}
-              <span className="italic-caps">CodePath</span>,{' '}
-              <span className="italic-caps">Headstarter</span> — and I try to pay it forward by
-              mentoring first-year CS students at NJIT and organizing community events at the
-              <span className="italic-caps"> Islamic Center of Passaic County</span>.
+              When I&apos;m not coding, I&apos;m usually doing one of a few things — wrestling, playing
+              pickup basketball with friends, or dragging everyone to a restaurant I&apos;ve never
+              tried. And at some point most nights I end up down a rabbit hole about UFOs, deep space,
+              or whatever unexplained thing the internet is arguing about that week. I&apos;m curious to
+              a fault. Half my side projects start because I wanted to understand how something worked
+              and couldn&apos;t let it go.
             </p>
 
-            <p className="text-[17px] leading-[1.75] mb-10" style={{ color: 'var(--text-2)' }}>
-              Outside of work: hackathons (Recova won 1st place at NJIT&apos;s Claude Builder;
-              Transparency Lens took Best Use of MongoDB at KeanUHackThis), reading essays about
-              design, and trying to figure out where LLMs actually belong in financial infra.
+            <p className="text-[17px] leading-[1.75] mb-6" style={{ color: 'var(--text-2)' }}>
+              I&apos;ve learned a ton from programs like Break Through Tech AI at Cornell, SEO Tech,
+              BNY, America Needs You, CodePath, and Headstarter — so I try to pass it on. I mentor
+              first-year CS students at NJIT and help run community events at my local Islamic center.
+            </p>
+
+            <p className="text-[17px] leading-[1.75] mb-14" style={{ color: 'var(--text-2)' }}>
+              The rest of my time goes to hackathons and side projects. Recova won 1st at NJIT&apos;s
+              Claude Builder, Transparency Lens took Best Use of MongoDB at KeanUHackThis, and there&apos;s
+              always something half-built on my laptop that I made just to see if I could.
             </p>
 
             {/* Pull-quote */}
             <blockquote
-              className="my-14 pl-6 py-2"
+              className="mb-14 pl-6 py-1"
               style={{ borderLeft: '2px solid var(--blue-2)' }}
             >
-              <p
-                className="serif italic text-[26px] leading-[1.35]"
-                style={{ color: 'var(--text)' }}
-              >
-                &ldquo;I like projects with a clear problem at the center — things that are both
-                technically interesting <span style={{ color: 'var(--blue-2)' }}>and</span> genuinely useful.&rdquo;
+              <p className="text-[22px] leading-[1.45] font-medium text-white" style={{ letterSpacing: '-0.01em' }}>
+                &ldquo;Build things that are actually useful — and stay curious enough to keep asking <span style={{ color: 'var(--blue-2)' }}>why</span>.&rdquo;
               </p>
-              <p className="mt-4 marker" style={{ color: 'var(--text-3)' }}>
-                — a personal rule
+              <p className="mt-4 text-[12.5px]" style={{ color: 'var(--text-3)' }}>
+                — how I try to work
               </p>
             </blockquote>
 
-            {/* Education card — non-templated inline */}
+            {/* Education */}
             <div className="mb-14">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="marker">Education</span>
-                <div className="h-px flex-1" style={{ background: 'var(--hairline)' }} />
-              </div>
-
+              <p className="eyebrow mb-6">Education</p>
               <div className="flex items-center gap-5">
                 <div
-                  className="h-16 w-16 shrink-0 overflow-hidden rounded-xl"
-                  style={{ border: '1px solid var(--hairline)' }}
+                  className="h-16 w-16 shrink-0 rounded-md overflow-hidden flex items-center justify-center"
+                  style={{ background: '#FFFFFF' }}
                 >
-                  <img src={logos.njit} alt="NJIT" className="h-full w-full object-cover" />
+                  <img src={logos.njit} alt="NJIT" className="h-full w-full object-contain p-1.5" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-[17px] tracking-tight">
+                  <p className="text-white font-semibold text-[17px] tracking-tight">
                     New Jersey Institute of Technology
                   </p>
-                  <p className="text-[14px] mt-0.5" style={{ color: 'var(--text-2)' }}>
+                  <p className="text-[13.5px] mt-0.5" style={{ color: 'var(--text-2)' }}>
                     B.S. Computer Science · Minor in Applied Mathematics
                   </p>
-                  <p className="text-[12px] mt-1 italic-caps" style={{ color: 'var(--text-3)', letterSpacing: 0, textTransform: 'none' }}>
+                  <p className="text-[12.5px] mt-1" style={{ color: 'var(--text-3)' }}>
                     Albert Dorman Honors College · Incoming Junior · Expected 2027
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Skills — as tag-cloud paragraph, not another grid */}
+            {/* Skills — prose, not chips */}
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <span className="marker">Technical Skills</span>
-                <div className="h-px flex-1" style={{ background: 'var(--hairline)' }} />
-              </div>
-
+              <p className="eyebrow mb-6">Toolbox</p>
               {skillGroups.map((group) => (
                 <div key={group.category} className="mb-6">
-                  <p className="marker mb-2" style={{ color: 'var(--blue-2)', letterSpacing: '0.1em' }}>
+                  <p className="text-[12.5px] mb-2" style={{ color: 'var(--text-3)' }}>
                     {group.category}
                   </p>
-                  <p className="text-[15px] leading-[1.8]">
+                  <p className="text-[15.5px] leading-[1.8]" style={{ color: 'var(--text)' }}>
                     {group.skills.map((s, i) => (
                       <span key={s}>
-                        <span className="italic-caps" style={{ color: 'var(--text)', letterSpacing: 0, textTransform: 'none' }}>
-                          {s}
-                        </span>
+                        {s}
                         {i < group.skills.length - 1 && (
                           <span style={{ color: 'var(--text-4)' }}> · </span>
                         )}
@@ -198,17 +174,18 @@ export default function About() {
           </motion.article>
         </div>
 
-        {/* ── Footer note ─────────────────────────────── */}
+        {/* Footer */}
         <motion.div
-          {...inView}
-          className="mt-20 pt-10 flex flex-col md:flex-row md:items-center justify-between gap-4"
+          {...rise}
+          className="mt-16 pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
           style={{ borderTop: '1px solid var(--hairline)' }}
         >
-          <p className="serif italic text-[16px]" style={{ color: 'var(--text-3)' }}>
+          <p className="italic-serif text-[17px]" style={{ color: 'var(--text-3)' }}>
             — that&apos;s me.
           </p>
-          <a href="/contact" className="editorial-link text-[13px]" style={{ color: 'var(--text)' }}>
-            Get in touch →
+          <a href="/contact" className="inline-flex items-center gap-1.5 text-[13.5px] font-medium transition-colors" style={{ color: 'var(--text)' }}>
+            Get in touch
+            <ArrowUpRight size={14} />
           </a>
         </motion.div>
       </div>

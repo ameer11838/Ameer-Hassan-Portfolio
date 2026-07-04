@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#030712', color: '#FFFFFF' }}
+      style={{ background: 'var(--bg)', color: 'var(--text)' }}
     >
       <Navbar />
       <main className="flex-1">{children}</main>

@@ -1,33 +1,35 @@
 /**
  * Central asset registry.
  *
- * To swap in a real logo/image:
- *   1. Drop the file into `src/assets/logos/` (or `src/assets/projects/`)
- *   2. Update the import path below
- *   3. Everything else auto-updates
+ * Real logos live in `src/assets/logos/real/`.
+ * Project thumbnails still live in `src/assets/projects/` (SVG placeholders).
+ * The headshot is served from `/assets/headshot.jpg` via vite's `publicDir`.
  */
 
-// ── Company / Organization Logos ────────────────────────────────
-import fiservLogo         from '../assets/logos/fiserv.svg'
-import arkraLogo          from '../assets/logos/arkra.svg'
-import njitLogo           from '../assets/logos/njit.svg'
-import seoLogo            from '../assets/logos/seo.svg'
-import bnyLogo            from '../assets/logos/bny.svg'
-import bttLogo            from '../assets/logos/break-through-tech.svg'
-import shpeLogo           from '../assets/logos/shpe.svg'
-import codepathLogo       from '../assets/logos/codepath.svg'
-import anyLogo            from '../assets/logos/america-needs-you.svg'
-import icpcLogo           from '../assets/logos/icpc.svg'
-import headstarterLogo    from '../assets/logos/headstarter.svg'
+// ── Real Company / Organization Logos ───────────────────────────
+import fiservLogo         from '../assets/logos/real/fiserv.webp'
+import arkraLogo          from '../assets/logos/real/arkra.png'
+import njitLogo           from '../assets/logos/real/njit.jpeg'
+import seoLogo            from '../assets/logos/real/seo.jpeg'
+import bnyLogo            from '../assets/logos/real/bny.jpeg'
+import bttLogo            from '../assets/logos/real/break-through-tech.jpeg'
+import shpeLogo           from '../assets/logos/real/shpe.jpeg'
+import codepathLogo       from '../assets/logos/real/codepath.jpeg'
+import anyLogo            from '../assets/logos/real/america-needs-you.jpeg'
+import icpcLogo           from '../assets/logos/real/icpc.jpeg'
+import headstarterLogo    from '../assets/logos/real/headstarter.jpeg'
 import isotopeLogo        from '../assets/logos/isotope.svg'
 
-// ── Project Thumbnails ──────────────────────────────────────────
-import discordChatImage        from '../assets/projects/discord-chat.svg'
-import aiCodeEditorImage       from '../assets/projects/ai-code-editor.svg'
-import solarPhysicsImage       from '../assets/projects/solar-physics.svg'
-import masjidPayImage          from '../assets/projects/masjidpay.svg'
-import recovaImage             from '../assets/projects/recova.svg'
-import transparencyLensImage   from '../assets/projects/transparency-lens.svg'
+// ── Project Images ──────────────────────────────────────────────
+// Real screenshots where they exist; product marks/logos otherwise.
+import recovaImage             from '../assets/projects/recova.png'              // screenshot
+import aiCodeEditorImage       from '../assets/projects/ai-code-editor.png'      // screenshot
+import transparencyLensImage   from '../assets/projects/transparency-lens.png'   // screenshot
+import inventoryImage          from '../assets/projects/inventory.png'           // screenshot
+import brainTumorImage         from '../assets/projects/brain-tumor.png'         // mark
+import masjidPayImage          from '../assets/projects/masjidpay.webp'          // mark
+import discordChatImage        from '../assets/projects/discord.png'             // mark
+import solarPhysicsImage       from '../assets/projects/solar.jpeg'              // mark
 
 export const logos = {
   fiserv:       fiservLogo,
@@ -51,11 +53,13 @@ export const projectImages = {
   masjidPay:        masjidPayImage,
   recova:           recovaImage,
   transparencyLens: transparencyLensImage,
+  inventory:        inventoryImage,
+  brainTumor:       brainTumorImage,
 }
 
 /**
- * Profile photo — served from /assets/ via vite `publicDir`.
- * Real file lives at `/assets/profile-pic-4.png`.
+ * Headshot — real photo copied from ~/Documents/Portfolio images.
+ * Served from `/headshot.jpg` via vite's `publicDir: 'assets'`.
  */
-export const profilePhoto = '/profile-pic-4.png'
-export const profilePhotoFallback = '/profile-pic-3.png'
+export const profilePhoto = '/headshot.jpg'
+export const profilePhotoFallback = '/profile-pic-4.png'

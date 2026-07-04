@@ -15,17 +15,6 @@ export const leadership: LeadershipItem[] = [
     category: 'programs',
   },
   {
-    id: 'seo',
-    title: 'Tech Developer',
-    organization: 'SEO (Sponsors for Educational Opportunity)',
-    type: 'Competitive Selective Program',
-    period: '2025 – Present',
-    logoSrc: logos.seo,
-    description:
-      'SEO Tech places high-achieving underrepresented students at top software firms via intensive interview prep and career development.',
-    category: 'programs',
-  },
-  {
     id: 'bny',
     title: 'Sophomore Summit Fellow',
     organization: 'BNY Mellon',
