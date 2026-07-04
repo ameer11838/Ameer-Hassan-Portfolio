@@ -1,0 +1,32 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="white"/>
+  <g fill="#2D7A4F">
+    <!-- Main mosque dome (large center) -->
+    <path d="M 60 110 Q 100 55 140 110 Z"/>
+    <!-- Small finial on top of dome -->
+    <line x1="100" y1="55" x2="100" y2="42" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="100" cy="40" r="2.5"/>
+    <!-- Star and crescent -->
+    <path d="M 100 30 L 102 24 L 108 24 L 103 20 L 105 14 L 100 18 L 95 14 L 97 20 L 92 24 L 98 24 Z" opacity="0.9"/>
+    <!-- Left minaret -->
+    <rect x="42" y="80" width="10" height="35" rx="1"/>
+    <path d="M 42 80 Q 47 65 52 80 Z"/>
+    <line x1="47" y1="60" x2="47" y2="55" stroke="#2D7A4F" stroke-width="1.5"/>
+    <!-- Right minaret -->
+    <rect x="148" y="80" width="10" height="35" rx="1"/>
+    <path d="M 148 80 Q 153 65 158 80 Z"/>
+    <line x1="153" y1="60" x2="153" y2="55" stroke="#2D7A4F" stroke-width="1.5"/>
+    <!-- Archway inside dome -->
+    <path d="M 84 110 Q 100 82 116 110 Z" fill="white"/>
+    <!-- Base ground -->
+    <rect x="38" y="115" width="124" height="6" rx="1"/>
+  </g>
+  <!-- ICPC text -->
+  <text x="100" y="148" text-anchor="middle" fill="#2D7A4F"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="28" font-weight="900" letter-spacing="2">ICPC</text>
+  <!-- Small subtitle -->
+  <text x="100" y="166" text-anchor="middle" fill="#2D7A4F"
+    font-family="'Helvetica Neue', sans-serif"
+    font-size="8" font-weight="600" letter-spacing="0.5">Islamic Center of Passaic County</text>
+</svg>

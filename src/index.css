@@ -2,78 +2,193 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design tokens ─────────────────────────────────────── */
+:root {
+  --bg:          #050506;
+  --bg-elevated: #0A0A0C;
+  --surface:     #0D0D10;
+  --surface-2:   #131318;
+  --hairline:    rgba(255, 255, 255, 0.06);
+  --hairline-2:  rgba(255, 255, 255, 0.12);
+  --text:        #FAFAFA;
+  --text-2:      #A3A3A8;
+  --text-3:      #6B6B72;
+  --text-4:      #3F3F46;
+  --blue:        #3B82F6;
+  --blue-2:      #60A5FA;
+  --blue-glow:   rgba(59, 130, 246, 0.35);
+
+  /* Company brand colors */
+  --fiserv:      #FF6200;
+  --fiserv-bg:   #04122E;
+  --arkra:       #FF6B00;
+  --njit:        #C81D25;
+  --seo:         #E60028;
+  --bny:         #0A1128;
+  --btt:         #C5FF3D;
+  --btt-bg:      #012C3D;
+  --shpe:        #003087;
+  --any:         #2B6CB0;
+  --icpc:        #2D7A4F;
+  --codepath:    #00E473;
+  --headstarter: #5EEAD4;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
   }
 
   body {
-    background-color: #0d0d0d;
-    color: #f5f5f5;
-    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.55;
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.2);
+    background-color: rgba(59, 130, 246, 0.28);
+    color: #FFFFFF;
   }
 
-  ::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #0d0d0d;
-  }
-
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.4);
   }
 }
 
-@layer utilities {
-  .card {
-    @apply bg-[#141414] border border-white/[0.06] rounded-2xl;
+/* ── Editorial serif for accents ─────────────────────── */
+.serif {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-feature-settings: 'liga', 'kern';
+}
+
+.italic-caps {
+  font-style: italic;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Editorial marker (small caps label) ─────────────── */
+.marker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── Massive display type ────────────────────────────── */
+.display {
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white transition-all duration-200;
+    background: #FAFAFA;
+    color: #050506;
+    box-shadow: 0 8px 24px -8px rgba(250,250,250,0.25);
+  }
+  .btn-primary:hover {
+    background: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px -8px rgba(250,250,250,0.35);
   }
 
-  .card-hover {
-    @apply hover:border-white/[0.11] hover:bg-[#181818] transition-all duration-200;
+  .btn-outline {
+    @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-white transition-all duration-200;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .btn-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-3);
+  }
+  .btn-icon:hover {
+    border-color: rgba(255,255,255,0.28);
+    color: var(--text);
+    background: rgba(255,255,255,0.03);
   }
 
   .tag {
-    @apply text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.05] text-neutral-500 border border-white/[0.07] font-mono;
+    @apply inline-flex items-center rounded px-2 py-0.5 font-mono text-[11px] font-medium;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-2);
+    border: 1px solid rgba(255,255,255,0.06);
   }
 
-  .page-container {
-    @apply max-w-5xl mx-auto px-6 pt-28 pb-24;
+  /* Line clamps */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-
-  .page-title {
-    @apply text-[28px] font-bold text-white mb-1.5 tracking-tight;
-  }
-
-  .page-subtitle {
-    @apply text-neutral-500 text-sm mb-10;
-  }
-
-  .section-divider {
-    @apply flex items-center gap-3 mb-5;
-  }
-
-  .section-divider-label {
-    @apply text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-500 shrink-0;
-  }
-
-  .section-divider-line {
-    @apply flex-1 h-px bg-white/[0.05];
-  }
-
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ── Editorial link with underline animation ─────────── */
+.editorial-link {
+  color: var(--text);
+  border-bottom: 1px solid var(--text-3);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  padding-bottom: 1px;
+}
+.editorial-link:hover {
+  border-color: var(--text);
+  color: var(--blue-2);
+}
+
+/* ── Custom animations ────────────────────────────────── */
+@keyframes marquee-slow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee-slow 40s linear infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 49%  { opacity: 1; }
+  50%, 100%{ opacity: 0; }
+}
+.cursor::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  background: var(--blue-2);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: cursor-blink 1s steps(1) infinite;
 }

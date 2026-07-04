@@ -4,7 +4,6 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Experience from './pages/Experience'
-import Leadership from './pages/Leadership'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 
@@ -17,9 +16,10 @@ function AnimatedRoutes() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="experience" element={<Experience />} />
-        <Route path="leadership" element={<Leadership />} />
         <Route path="projects" element={<Projects />} />
         <Route path="contact" element={<Contact />} />
+        {/* Legacy redirects */}
+        <Route path="leadership" element={<Navigate to="/experience" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="120" fill="#0A1128"/>
+  <text x="120" y="60" text-anchor="middle" fill="white"
+    font-family="Georgia, serif"
+    font-size="30" font-weight="700" letter-spacing="1">BNY</text>
+  <line x1="80" y1="72" x2="160" y2="72" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="120" y="92" text-anchor="middle" fill="#93C5FD"
+    font-family="Georgia, serif"
+    font-size="16" font-weight="600" letter-spacing="4">MELLON</text>
+</svg>

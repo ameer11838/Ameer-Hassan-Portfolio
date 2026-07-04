@@ -4,9 +4,12 @@ import Footer from './Footer'
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: '#030712', color: '#FFFFFF' }}
+    >
       <Navbar />
-      <div className="flex-1">{children}</div>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   )

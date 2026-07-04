@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#0A1918"/>
+  <!-- Origami-style arrow shape (paper airplane, teal) -->
+  <g fill="#5EEAD4">
+    <!-- Main arrow body -->
+    <path d="M 60 105 L 130 60 L 115 100 L 148 100 L 90 148 L 100 108 Z" opacity="0.95"/>
+    <!-- Highlight triangle -->
+    <path d="M 60 105 L 100 108 L 90 148 Z" opacity="0.6"/>
+    <!-- Small accent -->
+    <path d="M 130 60 L 115 100 L 148 100 Z" opacity="0.7"/>
+  </g>
+</svg>

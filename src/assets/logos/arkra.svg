@@ -1,0 +1,35 @@
+<svg viewBox="0 0 260 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="260" height="100" fill="white"/>
+  <!-- Left giraffe: neck + head with horns -->
+  <g fill="#FF6600">
+    <!-- Left neck curve -->
+    <path d="M 20 85 Q 20 60 24 42 Q 28 22 40 15 Q 48 10 54 18 L 52 22 Q 42 20 36 28 Q 30 42 32 60 L 32 85 Z"/>
+    <!-- Left head -->
+    <ellipse cx="52" cy="15" rx="7" ry="6"/>
+    <!-- Left horns -->
+    <line x1="49" y1="10" x2="47" y2="4" stroke="#FF6600" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="55" y1="10" x2="57" y2="4" stroke="#FF6600" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Left ear -->
+    <path d="M 46 14 Q 42 12 40 16 Q 42 18 46 17 Z"/>
+  </g>
+  <!-- Right giraffe: taller neck -->
+  <g fill="#FF6600">
+    <!-- Right neck curve -->
+    <path d="M 40 85 Q 40 55 46 32 Q 52 12 68 8 Q 78 6 82 16 L 80 20 Q 72 16 66 22 Q 56 36 54 58 L 54 85 Z"/>
+    <!-- Right head -->
+    <ellipse cx="80" cy="12" rx="7.5" ry="6"/>
+    <!-- Right horns -->
+    <line x1="77" y1="7" x2="75" y2="1" stroke="#FF6600" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="83" y1="7" x2="85" y2="1" stroke="#FF6600" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Right ear -->
+    <path d="M 74 11 Q 70 9 68 13 Q 70 15 74 14 Z"/>
+  </g>
+  <!-- Vertical body stripes -->
+  <rect x="26" y="60" width="2" height="25" fill="white" opacity="0.5"/>
+  <rect x="34" y="55" width="2" height="30" fill="white" opacity="0.5"/>
+  <rect x="46" y="55" width="2" height="30" fill="white" opacity="0.5"/>
+  <!-- arkra wordmark -->
+  <text x="170" y="60" text-anchor="middle" fill="#FF6600"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="42" font-weight="900" letter-spacing="-1">arkra</text>
+</svg>

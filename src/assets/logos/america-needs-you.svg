@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="white"/>
+  <!-- Blue circle ring (thicker) -->
+  <circle cx="100" cy="100" r="76" fill="none" stroke="#2B6CB0" stroke-width="14"/>
+  <!-- Orange arc (top portion, overlapping) -->
+  <path d="M 24 100 A 76 76 0 0 1 176 100" fill="none" stroke="#E53E2F" stroke-width="14"/>
+  <!-- ANY text (bold, centered) -->
+  <text x="100" y="112" text-anchor="middle" fill="#2B6CB0"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="42" font-weight="900" letter-spacing="0">ANY</text>
+  <!-- Subtitle -->
+  <text x="100" y="134" text-anchor="middle" fill="#E53E2F"
+    font-family="Georgia, serif"
+    font-size="11" font-weight="700" letter-spacing="1.5">AMERICA NEEDS YOU</text>
+</svg>

@@ -17,23 +17,37 @@ export default function ProjectFilters({ active, onChange, counts }: Props) {
           <button
             key={filter}
             onClick={() => onChange(filter as ProjectCategory)}
-            className={`relative text-sm px-3.5 py-1.5 rounded-lg font-medium transition-all duration-150 ${
-              isActive
-                ? 'text-white bg-white/[0.1] border border-white/[0.12]'
-                : 'text-neutral-500 bg-transparent border border-transparent hover:text-neutral-200 hover:bg-white/[0.04]'
-            }`}
+            className="relative rounded-lg px-3.5 py-1.5 text-[13px] font-medium transition-all duration-200"
+            style={{
+              color: isActive ? '#FFFFFF' : '#64748B',
+              background: 'transparent',
+            }}
+            onMouseEnter={(e) => {
+              if (!isActive) e.currentTarget.style.color = '#CBD5E1'
+            }}
+            onMouseLeave={(e) => {
+              if (!isActive) e.currentTarget.style.color = '#64748B'
+            }}
           >
             {isActive && (
               <motion.span
-                layoutId="filter-pill"
-                className="absolute inset-0 rounded-lg bg-white/[0.07] border border-white/[0.1]"
-                transition={{ type: 'spring', bounce: 0.2, duration: 0.35 }}
+                layoutId="project-filter-pill"
+                className="absolute inset-0 rounded-lg"
+                style={{
+                  background: 'rgba(59,130,246,0.12)',
+                  border: '1px solid rgba(59,130,246,0.35)',
+                  boxShadow: '0 0 20px -6px rgba(59,130,246,0.4)',
+                }}
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
             )}
-            <span className="relative">
+            <span className="relative flex items-center gap-2">
               {filter}
               {counts[filter] !== undefined && (
-                <span className={`ml-1.5 text-[11px] ${isActive ? 'text-neutral-400' : 'text-neutral-600'}`}>
+                <span
+                  className="text-[10px] font-mono"
+                  style={{ color: isActive ? '#93C5FD' : '#334155' }}
+                >
                   {counts[filter]}
                 </span>
               )}

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="white"/>
+  <text x="100" y="80" text-anchor="middle" fill="#0A0A0A"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="34" font-weight="900" letter-spacing="-1">CODE</text>
+  <text x="100" y="118" text-anchor="middle" fill="#0A0A0A"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="34" font-weight="900" letter-spacing="-1">PATH</text>
+  <text x="100" y="158" text-anchor="middle" fill="#00E473"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="26" font-weight="900" letter-spacing="-0.5">*.ORG</text>
+</svg>

@@ -6,12 +6,9 @@ export interface Experience {
   period: string
   location: string
   current: boolean
+  logoSrc: string
   description: string
   tech: string[]
-  logoUrl: string
-  logoText: string
-  logoBg: string
-  logoColor: string
 }
 
 export interface Project {
@@ -19,23 +16,27 @@ export interface Project {
   name: string
   description: string
   category: ProjectCategory
+  imageSrc: string
   tech: string[]
-  github: string | null
-  live: string | null
+  githubUrl: string
+  demoUrl: string
+  detailsUrl: string
   award?: string
 }
 
 export type ProjectCategory = 'All' | 'AI/ML' | 'FinTech' | 'Web Apps' | 'Research' | 'Hackathons'
+
+export type LeadershipCategory = 'leadership' | 'programs'
 
 export interface LeadershipItem {
   id: string
   title: string
   organization: string
   type: string
-  logoUrl: string
-  logoText: string
-  logoBg: string
-  logoColor: string
+  period: string
+  logoSrc: string
+  description: string
+  category: LeadershipCategory
 }
 
 export interface SkillGroup {

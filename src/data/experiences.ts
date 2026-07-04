@@ -1,4 +1,5 @@
 import type { Experience } from '../types'
+import { logos } from './assets'
 
 export const experiences: Experience[] = [
   {
@@ -9,13 +10,10 @@ export const experiences: Experience[] = [
     period: 'June 2026 – Present',
     location: 'Berkeley Heights, NJ',
     current: true,
+    logoSrc: logos.fiserv,
     description:
       'Building an AI-powered automation agent that generates enterprise test cases across positive, negative, boundary, edge case, and validation scenarios — reducing manual QA effort and improving test consistency.',
     tech: ['Java', 'Selenium', 'Cucumber', 'Jira API', 'Confluence API', 'GitHub Copilot'],
-    logoUrl: 'https://logo.clearbit.com/fiserv.com',
-    logoText: 'Fi',
-    logoBg: '#3d1a00',
-    logoColor: '#fb923c',
   },
   {
     id: 'arkra',
@@ -25,13 +23,10 @@ export const experiences: Experience[] = [
     period: 'Oct 2025 – Mar 2026',
     location: 'Newport Beach, CA',
     current: false,
+    logoSrc: logos.arkra,
     description:
       'Built SEC EDGAR scraping and LLM extraction pipelines for 10-K and 10-Q financial filings using Playwright and OpenAI, then designed metadata filtering workflows before uploading structured data to AWS S3.',
     tech: ['Python', 'Playwright', 'OpenAI API', 'AWS S3'],
-    logoUrl: 'https://logo.clearbit.com/arkra.com',
-    logoText: 'Ar',
-    logoBg: '#0f172a',
-    logoColor: '#60a5fa',
   },
   {
     id: 'njit-research',
@@ -41,13 +36,10 @@ export const experiences: Experience[] = [
     period: 'June 2025 – Jan 2026',
     location: 'Newark, NJ',
     current: false,
+    logoSrc: logos.njit,
     description:
       'Worked on AI/ML-driven solar physics research using NASA/SDO datasets. Co-developed a Random Forest-based Solar Activity Classifier that categorized solar events into risk levels.',
     tech: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'NASA/SDO Data', 'Binder'],
-    logoUrl: 'https://logo.clearbit.com/njit.edu',
-    logoText: 'NJ',
-    logoBg: '#3f0000',
-    logoColor: '#f87171',
   },
   {
     id: 'njit-mentor',
@@ -57,12 +49,9 @@ export const experiences: Experience[] = [
     period: 'June 2025 – Present',
     location: 'Newark, NJ',
     current: true,
+    logoSrc: logos.njit,
     description:
       'Mentoring first-year CS students in Java, Python, debugging, and technical project development. Supporting hackathon prep workshops and technical events throughout the year.',
     tech: ['Java', 'Python', 'Debugging', 'Technical Mentorship'],
-    logoUrl: 'https://logo.clearbit.com/njit.edu',
-    logoText: 'NJ',
-    logoBg: '#3f0000',
-    logoColor: '#f87171',
   },
 ]

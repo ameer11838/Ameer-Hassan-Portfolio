@@ -1,44 +1,106 @@
 import type { LeadershipItem } from '../types'
+import { logos } from './assets'
 
 export const leadership: LeadershipItem[] = [
+  // ── PROGRAMS / FELLOWSHIPS ────────────────────────────────
+  {
+    id: 'btt',
+    title: 'AI/ML Fellow',
+    organization: 'Break Through Tech AI',
+    type: 'Cornell Tech Partnership',
+    period: '2025 – 2026',
+    logoSrc: logos.btt,
+    description:
+      "Selected for Cornell Tech's Break Through Tech AI fellowship — applied ML curriculum, real client projects, industry mentorship.",
+    category: 'programs',
+  },
   {
     id: 'seo',
     title: 'Tech Developer',
     organization: 'SEO (Sponsors for Educational Opportunity)',
     type: 'Competitive Selective Program',
-    logoUrl: 'https://logo.clearbit.com/seo-usa.org',
-    logoText: 'SE',
-    logoBg: '#1e1b4b',
-    logoColor: '#a5b4fc',
+    period: '2025 – Present',
+    logoSrc: logos.seo,
+    description:
+      'SEO Tech places high-achieving underrepresented students at top software firms via intensive interview prep and career development.',
+    category: 'programs',
   },
   {
     id: 'bny',
     title: 'Sophomore Summit Fellow',
-    organization: 'BNY Pre-Internship Program',
-    type: 'Finance & Technology',
-    logoUrl: 'https://logo.clearbit.com/bny.com',
-    logoText: 'BN',
-    logoBg: '#0f1729',
-    logoColor: '#7dd3fc',
+    organization: 'BNY Mellon',
+    type: 'Pre-Internship Program',
+    period: '2025',
+    logoSrc: logos.bny,
+    description:
+      "Invite-only finance and technology program for high-potential undergraduates — exposure to BNY's tech and trading floor.",
+    category: 'programs',
   },
   {
-    id: 'btt',
-    title: 'AI/ML Fellow',
-    organization: 'Break Through Tech',
-    type: 'Cornell Tech Partnership',
-    logoUrl: 'https://logo.clearbit.com/breakthroughtech.org',
-    logoText: 'BT',
-    logoBg: '#0f2016',
-    logoColor: '#6ee7b7',
+    id: 'any',
+    title: 'FirstGenU Fellow',
+    organization: 'America Needs You',
+    type: 'Career Development Fellowship',
+    period: '2024 – Present',
+    logoSrc: logos.any,
+    description:
+      'Two-year fellowship pairing first-generation college students with professional mentors and career development coaching.',
+    category: 'programs',
   },
+  {
+    id: 'codepath',
+    title: 'Tech Fellow',
+    organization: 'CodePath',
+    type: 'Software Engineering Course',
+    period: '2024',
+    logoSrc: logos.codepath,
+    description:
+      "Completed CodePath's technical interview prep track — data structures, algorithms, and system design fundamentals.",
+    category: 'programs',
+  },
+  {
+    id: 'headstarter',
+    title: 'AI Software Engineering Fellow',
+    organization: 'Headstarter',
+    type: 'AI Fellowship',
+    period: '2024',
+    logoSrc: logos.headstarter,
+    description:
+      'Built and shipped multiple AI-powered projects in a fast-paced fellowship using modern LLM APIs and full-stack tools.',
+    category: 'programs',
+  },
+  // ── LEADERSHIP ROLES ────────────────────────────────────────
   {
     id: 'shpe',
     title: 'Pre-College Committee Officer',
     organization: 'SHPE — NJIT Chapter',
     type: 'Society of Hispanic Professional Engineers',
-    logoUrl: 'https://logo.clearbit.com/shpe.org',
-    logoText: 'SH',
-    logoBg: '#2d1515',
-    logoColor: '#fca5a5',
+    period: '2024 – Present',
+    logoSrc: logos.shpe,
+    description:
+      'Leads outreach to high school students exploring STEM careers — organizes events connecting pre-college students with engineers.',
+    category: 'leadership',
+  },
+  {
+    id: 'icpc',
+    title: 'Youth Committee Member',
+    organization: 'Islamic Center of Passaic County',
+    type: 'Community Organization',
+    period: '2022 – Present',
+    logoSrc: logos.icpc,
+    description:
+      "Organizes youth programs and community events at one of NJ's most active Islamic centers, serving hundreds of families.",
+    category: 'leadership',
+  },
+  {
+    id: 'isotope',
+    title: 'Student Ambassador',
+    organization: 'NJIT ISOTOPE',
+    type: 'University Ambassadors Program',
+    period: '2024 – Present',
+    logoSrc: logos.isotope,
+    description:
+      "Represents NJIT to prospective students and families — leads campus tours, information sessions, and admissions outreach events.",
+    category: 'leadership',
   },
 ]

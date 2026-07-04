@@ -1,0 +1,12 @@
+<svg viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="hex" x="0" y="0" width="18" height="16" patternUnits="userSpaceOnUse">
+      <path d="M9 0 L18 5 L18 15 L9 20 L0 15 L0 5 Z" fill="none" stroke="#0F2B5A" stroke-width="0.5" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="240" height="120" fill="#04122E"/>
+  <rect width="240" height="120" fill="url(#hex)"/>
+  <text x="120" y="72" text-anchor="middle" fill="#FF6200"
+    font-family="'Helvetica Neue', 'Arial Black', sans-serif"
+    font-size="42" font-weight="900" letter-spacing="-1.5">fiserv.</text>
+</svg>

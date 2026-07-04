@@ -1,137 +1,266 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, FileText, ChevronRight, Briefcase, GraduationCap, FlaskConical, Trophy } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, GitBranch, Linkedin, Mail } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
+import { logos, profilePhoto, profilePhotoFallback } from '../data/assets'
 
-const STAT_CARDS = [
-  { icon: Briefcase,     label: 'SWE Intern',        sub: 'Fiserv' },
-  { icon: GraduationCap, label: 'CS + Honors',        sub: 'NJIT' },
-  { icon: FlaskConical,  label: 'AI/ML Research',     sub: 'NJIT Lab' },
-  { icon: Trophy,        label: 'Hackathon Winner',   sub: '2× award-winning' },
-]
+const ROLES = ['Software Engineer', 'AI/ML Researcher', 'Builder']
 
-const item = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.38, ease: [0.25, 0.1, 0.25, 1] } },
-}
-
-const container = {
-  animate: { transition: { staggerChildren: 0.07 } },
+// Letter-by-letter reveal with blur
+function AnimatedName({ text, delay = 0 }: { text: string; delay?: number }) {
+  return (
+    <span className="inline-block">
+      {text.split('').map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 60, filter: 'blur(12px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.7,
+            delay: delay + i * 0.04,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block"
+          style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
+        >
+          {char === ' ' ? ' ' : char}
+        </motion.span>
+      ))}
+    </span>
+  )
 }
 
 export default function Home() {
+  const [roleIdx, setRoleIdx] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setRoleIdx((i) => (i + 1) % ROLES.length), 2600)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <PageTransition>
-      <div className="min-h-[calc(100vh-58px)] flex items-center">
-        <div className="max-w-5xl mx-auto px-6 py-14 w-full">
-          <div className="grid lg:grid-cols-[1fr_340px] gap-14 items-center">
+      <div className="mx-auto max-w-[1240px] px-6 pt-20 pb-24">
 
-            {/* ── Left: text ── */}
-            <motion.div variants={container} initial="initial" animate="animate">
-              {/* Status badge */}
-              <motion.div variants={item} className="mb-6">
-                <span className="inline-flex items-center gap-2 text-xs font-medium text-neutral-400 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  Open to internship opportunities
-                </span>
-              </motion.div>
-
-              {/* Name */}
-              <motion.h1
-                variants={item}
-                className="text-[52px] sm:text-[64px] lg:text-[72px] font-bold text-white tracking-tight leading-[1.06] mb-4"
-              >
-                Ameer
-                <br />
-                Hassan
-              </motion.h1>
-
-              {/* Role */}
-              <motion.p variants={item} className="text-neutral-300 text-[15px] font-medium mb-3">
-                Software Engineer · CS @ NJIT · AI/ML + FinTech
-              </motion.p>
-
-              {/* Tagline */}
-              <motion.p
-                variants={item}
-                className="text-neutral-500 text-[15px] leading-relaxed max-w-[440px] mb-8"
-              >
-                I build AI-powered software, automation tools, and data-driven systems that
-                turn complex problems into useful products.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div variants={item} className="flex flex-wrap items-center gap-2.5">
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-neutral-100 transition-colors duration-150"
-                >
-                  View Projects <ChevronRight size={14} />
-                </Link>
-                <a
-                  href="/Ameer_Hassan_Resume-.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-white/[0.12] text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-white/[0.05] hover:border-white/[0.2] transition-all duration-150"
-                >
-                  <FileText size={13} /> Resume
-                </a>
-                <a
-                  href="https://github.com/ameer11838"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="w-9 h-9 flex items-center justify-center border border-white/[0.1] rounded-lg text-neutral-400 hover:text-white hover:border-white/[0.2] hover:bg-white/[0.05] transition-all duration-150"
-                >
-                  <Github size={16} />
-                </a>
-                <a
-                  href="https://linkedin.com/in/ameermhassan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-9 h-9 flex items-center justify-center border border-white/[0.1] rounded-lg text-neutral-400 hover:text-white hover:border-white/[0.2] hover:bg-white/[0.05] transition-all duration-150"
-                >
-                  <Linkedin size={16} />
-                </a>
-              </motion.div>
-            </motion.div>
-
-            {/* ── Right: photo + stats ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.45, delay: 0.12, ease: [0.25, 0.1, 0.25, 1] }}
-              className="space-y-3"
-            >
-              {/* Profile photo — no overlay gradient */}
-              <div className="rounded-2xl overflow-hidden border border-white/[0.07] aspect-[4/3]">
-                <img
-                  src="/profile-pic-4.png"
-                  alt="Ameer Hassan"
-                  className="w-full h-full object-cover object-top"
-                  onError={(e) => {
-                    ;(e.currentTarget as HTMLImageElement).src = '/profile-pic-3.png'
-                  }}
-                />
-              </div>
-
-              {/* Stat cards — uniform, no colored tints */}
-              <div className="grid grid-cols-2 gap-2.5">
-                {STAT_CARDS.map(({ icon: Icon, label, sub }) => (
-                  <div key={label} className="card card-hover p-3.5 flex flex-col gap-2">
-                    <Icon size={15} className="text-neutral-400" />
-                    <div>
-                      <p className="text-white text-xs font-semibold leading-tight">{label}</p>
-                      <p className="text-neutral-600 text-[11px] leading-tight mt-0.5">{sub}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
+        {/* ── Editorial header ────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-between mb-16 pt-8"
+        >
+          <div className="flex items-center gap-3">
+            <span className="marker">Portfolio</span>
+            <span className="marker" style={{ color: 'var(--text-4)' }}>/</span>
+            <span className="marker">Vol. 01 · 2026</span>
           </div>
+          <div className="marker italic-caps" style={{ letterSpacing: 0, textTransform: 'none' }}>
+            Newark, NJ
+          </div>
+        </motion.div>
+
+        {/* ── Cover: name + photo side-by-side, staggered ────── */}
+        <div className="grid gap-12 lg:grid-cols-[1fr_380px] items-end mb-24">
+
+          {/* Name block */}
+          <div>
+            {/* Massive name */}
+            <h1
+              className="display text-white"
+              style={{ fontSize: 'clamp(72px, 12vw, 172px)' }}
+            >
+              <span className="block"><AnimatedName text="Ameer" delay={0.05} /></span>
+              <span className="block" style={{ marginTop: '-0.05em' }}>
+                <AnimatedName text="Hassan" delay={0.35} />
+              </span>
+            </h1>
+
+            {/* Editorial byline */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.9 }}
+              className="mt-8 max-w-[520px]"
+            >
+              <p className="text-[18px] leading-[1.55]" style={{ color: 'var(--text-2)' }}>
+                A student at NJIT building AI-powered systems, automation tools,
+                and data pipelines that solve real problems.{' '}
+                <span className="serif" style={{ color: 'var(--text)' }}>
+                  Currently engineering QA automation at{' '}
+                  <span style={{ color: 'var(--fiserv)' }}>Fiserv</span>.
+                </span>
+              </p>
+            </motion.div>
+
+            {/* Rotating role tagline */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              className="mt-8 flex items-center gap-3 text-[13px]"
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ background: 'var(--blue-2)', boxShadow: '0 0 10px var(--blue-2)' }}
+              />
+              <span style={{ color: 'var(--text-3)' }}>Working as</span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIdx}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="cursor font-medium"
+                  style={{ color: 'var(--text)' }}
+                >
+                  {ROLES[roleIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
+          </div>
+
+          {/* Photo — asymmetric portrait */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 1.0, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div
+              className="overflow-hidden"
+              style={{
+                aspectRatio: '3/4',
+                borderRadius: 2,
+              }}
+            >
+              <img
+                src={profilePhoto}
+                alt="Ameer Hassan"
+                className="h-full w-full object-cover object-top"
+                onError={(e) => {
+                  ;(e.currentTarget as HTMLImageElement).src = profilePhotoFallback
+                }}
+              />
+            </div>
+            {/* Photo caption */}
+            <div className="mt-3 flex items-baseline justify-between">
+              <span className="marker italic-caps" style={{ letterSpacing: 0, textTransform: 'none' }}>
+                Fig. 1 — the author
+              </span>
+              <span className="marker" style={{ color: 'var(--text-4)' }}>2025</span>
+            </div>
+          </motion.div>
         </div>
+
+        {/* ── CTAs ────────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.4 }}
+          className="flex flex-wrap items-center gap-3 mb-24"
+        >
+          <Link to="/experience" className="btn-primary group">
+            Read the chapters
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link to="/projects" className="btn-outline">
+            View projects
+          </Link>
+          <div className="ml-2 flex items-center gap-1.5">
+            <a href="https://github.com/ameer11838" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="btn-icon">
+              <GitBranch size={16} />
+            </a>
+            <a href="https://linkedin.com/in/ameermhassan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="btn-icon">
+              <Linkedin size={16} />
+            </a>
+            <a href="mailto:ameer.hassan726@gmail.com" aria-label="Email" className="btn-icon">
+              <Mail size={16} />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* ── Currently: a personal notes strip ───────────────── */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 mb-24 pt-10"
+          style={{ borderTop: '1px solid var(--hairline)' }}
+        >
+          <div>
+            <p className="marker mb-3">Currently building</p>
+            <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text)' }}>
+              An AI test-generation agent for enterprise QA — cutting manual test-writing
+              time by 60% across positive, negative, and edge cases.
+            </p>
+          </div>
+          <div>
+            <p className="marker mb-3">Studying</p>
+            <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text)' }}>
+              Applied ML through the Break Through Tech Cornell partnership. Also{' '}
+              <span className="italic-caps">Design of Everyday Things</span> on the side.
+            </p>
+          </div>
+          <div>
+            <p className="marker mb-3">Excited about</p>
+            <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text)' }}>
+              The overlap between LLMs and financial data infrastructure —
+              agents that reason over 10-Ks and market events in real time.
+            </p>
+          </div>
+        </motion.section>
+
+        {/* ── Previously — logo marquee ────────────────────────── */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="pt-10"
+          style={{ borderTop: '1px solid var(--hairline)' }}
+        >
+          <div className="flex items-baseline gap-6 mb-10">
+            <p className="marker">Previously & Currently</p>
+            <p className="serif italic-caps text-[15px]" style={{ color: 'var(--text-3)' }}>
+              — companies, fellowships, and programs
+            </p>
+          </div>
+
+          <div className="overflow-hidden relative">
+            <div className="animate-marquee flex items-center gap-14 whitespace-nowrap will-change-transform">
+              {[
+                logos.fiserv, logos.arkra, logos.njit, logos.bny, logos.seo,
+                logos.btt, logos.headstarter, logos.shpe, logos.any, logos.codepath,
+                logos.icpc, logos.isotope,
+                // duplicate for seamless loop
+                logos.fiserv, logos.arkra, logos.njit, logos.bny, logos.seo,
+                logos.btt, logos.headstarter, logos.shpe, logos.any, logos.codepath,
+                logos.icpc, logos.isotope,
+              ].map((logo, i) => (
+                <div
+                  key={i}
+                  className="h-10 shrink-0 flex items-center"
+                  style={{ opacity: 0.55, filter: 'grayscale(20%)' }}
+                >
+                  <img src={logo} alt="" className="h-full max-w-[140px] object-contain" />
+                </div>
+              ))}
+            </div>
+            {/* Fade edges */}
+            <div
+              className="absolute inset-y-0 left-0 w-24 pointer-events-none"
+              style={{ background: 'linear-gradient(to right, var(--bg), transparent)' }}
+            />
+            <div
+              className="absolute inset-y-0 right-0 w-24 pointer-events-none"
+              style={{ background: 'linear-gradient(to left, var(--bg), transparent)' }}
+            />
+          </div>
+        </motion.section>
+
       </div>
     </PageTransition>
   )

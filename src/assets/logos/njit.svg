@@ -1,0 +1,8 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" fill="#C81D25"/>
+  <text x="60" y="66" text-anchor="middle" fill="white"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30" font-weight="700" letter-spacing="4">NJIT</text>
+  <!-- Curved decorative line under NJIT -->
+  <path d="M 24 78 Q 60 88 96 78" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
