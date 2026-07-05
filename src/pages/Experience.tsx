@@ -185,16 +185,17 @@ function ExperienceEntry({
 // `full` = edge-to-edge solid logo, no white; `plate` = mark on a light plate.
 const ENTRIES = [
   { id: "fiserv", wordmark: "Fiserv", logo: "full" as const },
-  { id: "arkra", wordmark: "Arkra", logo: "plate" as const },
-  {
-    id: "njit-research",
-    wordmark: "NJIT Ying Wu College of Computing",
-    logo: "full" as const,
-  },
   {
     id: "seo",
     wordmark: "Sponsors for Educational Opportunity (SEO)",
     logo: "plate" as const,
+  },
+  { id: "arkra", wordmark: "Arkra", logo: "plate" as const },
+  { id: "headstarter", wordmark: "Headstarter", logo: "full" as const },
+  {
+    id: "njit-research",
+    wordmark: "NJIT Ying Wu College of Computing",
+    logo: "full" as const,
   },
   {
     id: "njit-mentor",
@@ -230,7 +231,7 @@ function EditorialLogoTile({
           src={item.logoSrc}
           alt={item.organization}
           ratio="4/3"
-          contain={0.6}
+          contain={item.logoContain ?? 0.6}
         />
       </div>
       <p

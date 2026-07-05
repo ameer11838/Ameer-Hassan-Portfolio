@@ -40,6 +40,8 @@ export interface LeadershipItem {
   logoSrc: string
   description: string
   category: LeadershipCategory
+  /** How much of the tile the logo fills (object-contain fraction). Default 0.6. */
+  logoContain?: number
 }
 
 export interface SkillGroup {

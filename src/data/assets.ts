@@ -18,7 +18,7 @@ import shpeLogo           from '../assets/logos/real/shpe.jpeg'
 import codepathLogo       from '../assets/logos/real/codepath.jpeg'
 import anyLogo            from '../assets/logos/real/america-needs-you.jpeg'
 import icpcLogo           from '../assets/logos/real/icpc.jpeg'
-import headstarterLogo    from '../assets/logos/real/headstarter.jpeg'
+import headstarterLogo    from '../assets/logos/real/headstarter.png'
 import isotopeLogo        from '../assets/logos/isotope.svg'
 
 // ── Project Images ──────────────────────────────────────────────

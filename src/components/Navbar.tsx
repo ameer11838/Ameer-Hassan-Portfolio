@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: 'About',      to: '/about' },
+  { label: 'About Me',   to: '/about' },
   { label: 'Experience', to: '/experience' },
-  { label: 'Work',       to: '/projects' },
+  { label: 'Projects',   to: '/projects' },
   { label: 'Contact',    to: '/contact' },
 ]
 

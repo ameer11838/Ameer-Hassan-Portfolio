@@ -42,6 +42,19 @@ export const experiences: Experience[] = [
     tech: ['Python', 'Flask', 'MySQL', 'JavaScript', 'Data Structures', 'Algorithms'],
   },
   {
+    id: 'headstarter',
+    company: 'Headstarter',
+    role: 'Software Engineering Resident',
+    team: 'Software Engineering Residency',
+    period: 'Jul 2025 – Oct 2025',
+    location: 'New York, NY',
+    current: false,
+    logoSrc: logos.headstarter,
+    description:
+      "Built 14+ ML, AI engineering, and full-stack projects in fast-moving teams. That included 5+ neural networks in Python and 11 apps in TypeScript on AWS and Vercel, plus LLM chaining, hyperparameter tuning, and fine-tuning across 10+ models, mentored by engineers from Google, Two Sigma, Tesla, Figma, and Citadel.",
+    tech: ['Python', 'TypeScript', 'LLMs', 'Neural Networks', 'AWS', 'Vercel'],
+  },
+  {
     id: 'njit-research',
     company: 'NJIT',
     role: 'AI/ML Research Assistant',

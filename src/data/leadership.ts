@@ -47,17 +47,6 @@ export const leadership: LeadershipItem[] = [
       "A competitive nationwide interview-prep program. I've worked through 100+ LeetCode-style problems, done weekly mock interviews with peer and mentor feedback, and drilled arrays, trees, graphs, recursion, and DP, all mentored by engineers from Google, Meta, and Microsoft.",
     category: 'programs',
   },
-  {
-    id: 'headstarter',
-    title: 'Software Engineer Intern',
-    organization: 'Headstarter',
-    type: 'AI Fellowship · New York, NY',
-    period: 'Jul 2025 – Oct 2025',
-    logoSrc: logos.headstarter,
-    description:
-      "Built 14+ ML, AI engineering, and full-stack projects in fast-moving teams. That included 5+ neural networks in Python and 11 apps in TypeScript on AWS and Vercel, plus LLM chaining, hyperparameter tuning, and fine-tuning across 10+ models, mentored by engineers from Google, Two Sigma, Tesla, Figma, and Citadel.",
-    category: 'programs',
-  },
   // ── LEADERSHIP ROLES ────────────────────────────────────────
   {
     id: 'shpe',
@@ -87,7 +76,7 @@ export const leadership: LeadershipItem[] = [
     organization: 'NJIT ISOTOPE',
     type: 'AANAPI Student Community',
     period: 'Sep 2025 – Present',
-    logoSrc: logos.isotope,
+    logoSrc: logos.njit,
     description:
       "I support students in the AANAPI community through mentorship and events built around cultural identity and student success, and I help first-year students settle into campus, academically and socially.",
     category: 'leadership',
