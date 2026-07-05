@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import Magnetic from "../components/Magnetic";
 import {
   logos,
   profilePhotoFallback,
@@ -247,16 +248,20 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 1.55 }}
               className="mt-12 flex flex-wrap items-center gap-3"
             >
-              <Link to="/projects" className="btn-primary group">
-                See selected work
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-              <Link to="/contact" className="btn-ghost --blue">
-                Get in touch
-              </Link>
+              <Magnetic>
+                <Link to="/projects" className="btn-primary group">
+                  See selected work
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link to="/contact" className="btn-ghost --blue">
+                  Get in touch
+                </Link>
+              </Magnetic>
             </motion.div>
           </div>
 
@@ -484,13 +489,15 @@ export default function Home() {
               </span>
             </p>
           </div>
-          <Link to="/contact" className="btn-primary group">
-            Say hello
-            <ArrowRight
-              size={14}
-              className="transition-transform group-hover:translate-x-1"
-            />
-          </Link>
+          <Magnetic>
+            <Link to="/contact" className="btn-primary group">
+              Say hello
+              <ArrowRight
+                size={14}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </Magnetic>
         </div>
       </section>
     </PageTransition>
