@@ -88,7 +88,7 @@
   .btn-primary:hover {
     background: #FFFFFF;
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px -10px rgba(96, 165, 250, 0.55), 0 4px 12px -8px rgba(0, 0, 0, 0.6);
   }
   .btn-primary:active {
     transform: translateY(0) scale(0.975);
@@ -101,9 +101,11 @@
     background: transparent;
   }
   .btn-ghost:hover {
-    border-color: var(--hairline-3);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(96, 165, 250, 0.5);
+    background: rgba(96, 165, 250, 0.06);
+    color: var(--blue-2);
     transform: translateY(-1px);
+    box-shadow: 0 10px 28px -12px rgba(96, 165, 250, 0.5);
   }
   .btn-ghost:active {
     transform: translateY(0) scale(0.975);
@@ -121,8 +123,9 @@
     background: transparent;
   }
   .btn-icon:hover {
-    border-color: var(--hairline-3);
-    color: var(--text);
+    border-color: rgba(96, 165, 250, 0.5);
+    color: var(--blue-2);
+    box-shadow: 0 0 18px -4px rgba(96, 165, 250, 0.5);
   }
 
   .chip {
@@ -150,6 +153,32 @@
 .link:hover {
   color: var(--blue-2);
   border-color: var(--blue-2);
+  text-shadow: 0 0 16px rgba(96, 165, 250, 0.5);
+}
+
+/* ── Animated nav underline ─────────────────────────── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--blue-2);
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* Blue glow for any element that opts in on hover */
+.glow-hover { transition: color 0.2s ease, text-shadow 0.2s ease; }
+.glow-hover:hover {
+  color: var(--blue-2);
+  text-shadow: 0 0 16px rgba(96, 165, 250, 0.55);
 }
 
 /* ── Rule ──────────────────────────────────────────── */
@@ -179,3 +208,17 @@
   vertical-align: middle;
   animation: cursor-blink 1s steps(1) infinite;
 }
+
+/* Typewriter caret for the hero name */
+.type-caret {
+  display: inline-block;
+  width: 0.055em;
+  height: 0.82em;
+  background: var(--blue-2);
+  margin-left: 0.04em;
+  vertical-align: baseline;
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.6);
+  animation: cursor-blink 1.05s steps(1) infinite;
+}
+
+.tabular-nums { font-variant-numeric: tabular-nums; }

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { GitBranch, ExternalLink, ArrowUpRight, Trophy } from 'lucide-react'
+import { GitBranch, ArrowUpRight, Trophy } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
+import ExpandableText from '../components/ExpandableText'
 import { projects } from '../data/projects'
 import type { Project } from '../types'
 
@@ -45,148 +46,89 @@ function ProjectCover({ project }: { project: Project }) {
     )
   }
 
-  if (kind === 'mark') {
-    return (
-      <div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{ background: 'radial-gradient(120% 120% at 50% 15%, #17171b 0%, #0d0d10 70%)' }}
-      >
-        <img
-          src={project.imageSrc}
-          alt={project.name}
-          className="object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-          style={{ width: '42%', height: '42%', borderRadius: 12 }}
-        />
-      </div>
-    )
-  }
-
+  // Marks fill the frame (centered); screenshots fill from the top.
   return (
     <img
       src={project.imageSrc}
       alt={project.name}
-      className="h-full w-full object-cover object-top transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
+      className={`h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04] ${
+        kind === 'mark' ? 'object-center' : 'object-top'
+      }`}
     />
   )
 }
 
 // ══════════════════════════════════════════════════════
-//  Link cluster (GitHub / Live Demo / Case Study)
+//  GitHub — one prominent button, nothing else
 // ══════════════════════════════════════════════════════
-function LinkCluster({ project, compact = false }: { project: Project; compact?: boolean }) {
-  const size = compact ? 'text-[13px]' : 'text-[13.5px]'
-
-  const Item = ({
-    href,
-    label,
-    Icon,
-  }: {
-    href: string
-    label: string
-    Icon: typeof GitBranch
-  }) => {
-    if (!isReal(href)) {
-      return (
-        <span className={`inline-flex items-center gap-1.5 font-medium opacity-30 cursor-not-allowed ${size}`}>
-          <Icon size={13} />
-          {label}
-        </span>
-      )
-    }
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`group/lnk inline-flex items-center gap-1.5 font-medium transition-colors ${size}`}
-        style={{ color: 'var(--text-2)' }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--blue-2)')}
-        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-2)')}
-      >
-        <Icon size={13} />
-        {label}
-        <ArrowUpRight
-          size={12}
-          className="opacity-0 -translate-x-1 transition-all duration-200 group-hover/lnk:opacity-100 group-hover/lnk:translate-x-0"
-        />
-      </a>
-    )
-  }
-
+function GithubLink({ project }: { project: Project; compact?: boolean }) {
+  if (!isReal(project.githubUrl)) return null
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-      <Item href={project.githubUrl}  label="GitHub"     Icon={GitBranch} />
-      <Item href={project.demoUrl}    label="Live Demo"  Icon={ExternalLink} />
-      <Item href={project.detailsUrl} label="Case Study" Icon={ArrowUpRight} />
-    </div>
+    <a
+      href={project.githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/gh inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[15px] font-medium transition-all duration-200"
+      style={{ border: '1px solid var(--hairline-2)', color: 'var(--text)' }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(96,165,250,0.5)'; e.currentTarget.style.color = 'var(--blue-2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--hairline-2)'; e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.transform = 'translateY(0)' }}
+    >
+      <GitBranch size={17} />
+      View on GitHub
+      <ArrowUpRight
+        size={15}
+        className="transition-transform duration-200 group-hover/gh:-translate-y-0.5 group-hover/gh:translate-x-0.5"
+      />
+    </a>
   )
 }
 
 // ══════════════════════════════════════════════════════
-//  Featured — full-bleed launch card
+//  Card image — cover + cursor-follow spotlight + award badge
 // ══════════════════════════════════════════════════════
-function FeaturedLaunch({ project, index }: { project: Project; index: number }) {
+function CardImage({
+  project,
+  ratio = '4/3',
+  radius = 8,
+}: {
+  project: Project
+  ratio?: string
+  radius?: number
+}) {
   return (
-    <motion.article {...rise} className="mb-32">
-      {/* Cover */}
+    <div
+      className="relative overflow-hidden group"
+      style={{ aspectRatio: ratio, borderRadius: radius, border: '1px solid var(--hairline)' }}
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect()
+        e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+        e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+      }}
+    >
+      <ProjectCover project={project} />
+      {/* spotlight that tracks the cursor */}
       <div
-        className="relative overflow-hidden group mb-8"
-        style={{
-          aspectRatio: '16/9',
-          borderRadius: 8,
-          border: '1px solid var(--hairline)',
-        }}
-      >
-        <ProjectCover project={project} />
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(180deg, rgba(9,9,11,0.1) 0%, transparent 30%, transparent 60%, rgba(9,9,11,0.8) 100%)' }}
-        />
-        {project.award && (
-          <div className="absolute top-6 left-6 flex items-center gap-2">
-            <span
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium tracking-widest uppercase"
-              style={{
-                background: 'rgba(9, 9, 11, 0.7)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid var(--hairline-3)',
-                color: '#FCD34D',
-              }}
-            >
-              <Trophy size={11} strokeWidth={2} />
-              {project.award}
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* Text row */}
-      <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] items-start">
-        <div>
-          <p className="eyebrow mb-4">
-            {String(index + 1).padStart(2, '0')} · Featured · {project.category}
-          </p>
-          <h2
-            className="text-white font-semibold tracking-tight leading-[1.02]"
-            style={{ fontSize: 'clamp(36px, 5vw, 68px)', letterSpacing: '-0.035em' }}
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: 'radial-gradient(260px circle at var(--mx) var(--my), rgba(96,165,250,0.16), transparent 65%)' }}
+      />
+      {project.award && (
+        <div className="absolute top-4 left-4">
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10.5px] font-medium tracking-widest uppercase"
+            style={{
+              background: 'rgba(9, 9, 11, 0.72)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid var(--hairline-3)',
+              color: '#FCD34D',
+            }}
           >
-            {project.name}
-          </h2>
+            <Trophy size={10} strokeWidth={2} />
+            {project.award}
+          </span>
         </div>
-        <div>
-          <p className="text-[17px] leading-[1.7] mb-6" style={{ color: 'var(--text-2)' }}>
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-1.5 mb-6">
-            {project.tech.map((t) => (
-              <span key={t} className="chip">{t}</span>
-            ))}
-          </div>
-          <LinkCluster project={project} />
-        </div>
-      </div>
-    </motion.article>
+      )}
+    </div>
   )
 }
 
@@ -198,16 +140,7 @@ function SplitLaunch({ project, index, reverse }: { project: Project; index: num
     <motion.article {...rise} className="mb-28">
       <div className={`grid gap-12 md:grid-cols-2 items-center ${reverse ? 'md:[&>*:first-child]:order-2' : ''}`}>
         {/* Image */}
-        <div
-          className="relative overflow-hidden group"
-          style={{
-            aspectRatio: '4/3',
-            borderRadius: 8,
-            border: '1px solid var(--hairline)',
-          }}
-        >
-          <ProjectCover project={project} />
-        </div>
+        <CardImage project={project} ratio="4/3" />
 
         {/* Text */}
         <div>
@@ -220,20 +153,17 @@ function SplitLaunch({ project, index, reverse }: { project: Project; index: num
           >
             {project.name}
           </h3>
-          {project.award && (
-            <p className="mb-4 text-[13px] flex items-center gap-1.5" style={{ color: '#FCD34D' }}>
-              <Trophy size={12} strokeWidth={2} /> {project.award}
-            </p>
-          )}
-          <p className="text-[16px] leading-[1.7] mb-6" style={{ color: 'var(--text-2)' }}>
-            {project.description}
-          </p>
+          <ExpandableText
+            text={project.description}
+            clampLines={4}
+            className="text-[16px] leading-[1.7] mb-6"
+          />
           <div className="flex flex-wrap gap-1.5 mb-6">
             {project.tech.map((t) => (
               <span key={t} className="chip">{t}</span>
             ))}
           </div>
-          <LinkCluster project={project} />
+          <GithubLink project={project} />
         </div>
       </div>
     </motion.article>
@@ -250,16 +180,7 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
         className="grid gap-6 md:grid-cols-[300px_1fr_auto] items-center py-8"
         style={{ borderTop: '1px solid var(--hairline)' }}
       >
-        <div
-          className="relative overflow-hidden"
-          style={{
-            aspectRatio: '16/10',
-            borderRadius: 6,
-            border: '1px solid var(--hairline)',
-          }}
-        >
-          <ProjectCover project={project} />
-        </div>
+        <CardImage project={project} ratio="16/10" radius={6} />
         <div>
           <p className="eyebrow mb-2">
             {String(index).padStart(2, '0')} · {project.category}
@@ -267,9 +188,9 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
           <h3 className="text-white font-semibold text-[22px] tracking-tight leading-tight mb-2 group-hover:text-blue-300 transition-colors">
             {project.name}
           </h3>
-          <p className="text-[14.5px] leading-[1.65] max-w-2xl line-clamp-2 mb-4" style={{ color: 'var(--text-2)' }}>
-            {project.description}
-          </p>
+          <div className="max-w-2xl mb-4">
+            <ExpandableText text={project.description} clampLines={2} className="text-[14.5px] leading-[1.65]" />
+          </div>
           <div className="flex flex-wrap gap-1.5">
             {project.tech.slice(0, 5).map((t) => (
               <span key={t} className="chip">{t}</span>
@@ -277,7 +198,7 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
           </div>
         </div>
         <div className="md:text-right">
-          <LinkCluster project={project} compact />
+          <GithubLink project={project} />
         </div>
       </div>
     </motion.article>
@@ -288,12 +209,9 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
 //  PAGE
 // ══════════════════════════════════════════════════════
 export default function Projects() {
-  const featured = projects.find((p) => p.id === 'recova')!
-  const splitIds = ['transparency-lens', 'ai-code-editor', 'brain-tumor']
+  const splitIds = ['recova', 'transparency-lens', 'ai-code-editor', 'brain-tumor']
   const splits = splitIds.map((id) => projects.find((p) => p.id === id)!)
-  const rest = projects.filter(
-    (p) => !['recova', ...splitIds].includes(p.id),
-  )
+  const rest = projects.filter((p) => !splitIds.includes(p.id))
 
   return (
     <PageTransition>
@@ -313,21 +231,19 @@ export default function Projects() {
             <span className="italic-serif" style={{ fontWeight: 500, color: 'var(--text-2)' }}>shipped.</span>
           </h1>
           <p className="max-w-2xl text-[19px] leading-[1.6]" style={{ color: 'var(--text-2)' }}>
-            A mix of hackathon builds, research, and side projects I made because I wanted to —
-            all stuff I&apos;d still be happy to show a stranger.
+            A mix of hackathon builds, research, and side projects I made because I wanted to.
+            All stuff I&apos;d still be happy to show a stranger.
           </p>
         </motion.header>
 
-        <FeaturedLaunch project={featured} index={0} />
-
         {splits.map((p, i) => (
-          <SplitLaunch key={p.id} project={p} index={i + 2} reverse={i % 2 === 1} />
+          <SplitLaunch key={p.id} project={p} index={i + 1} reverse={i % 2 === 1} />
         ))}
 
         <div className="mt-24">
           <p className="eyebrow mb-8">Also in the archive</p>
           {rest.map((p, i) => (
-            <IndexRow key={p.id} project={p} index={i + splits.length + 2} />
+            <IndexRow key={p.id} project={p} index={i + splits.length + 1} />
           ))}
           <div style={{ borderTop: '1px solid var(--hairline)' }} />
         </div>
@@ -339,7 +255,7 @@ export default function Projects() {
           style={{ borderTop: '1px solid var(--hairline)' }}
         >
           <p className="italic-serif text-[17px]" style={{ color: 'var(--text-3)' }}>
-            — more shipping soon.
+            more shipping soon.
           </p>
           <a href="/contact" className="inline-flex items-center gap-1.5 text-[13.5px] font-medium transition-colors" style={{ color: 'var(--text)' }}>
             Get in touch

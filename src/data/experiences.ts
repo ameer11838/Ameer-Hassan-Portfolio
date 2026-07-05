@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
     current: true,
     logoSrc: logos.fiserv,
     description:
-      "I'm building an AI agent that reads Jira tickets and Confluence specs and writes the test cases for them — positive, negative, boundary, edge, and validation. It plugs into our Selenium and Cucumber setup, so engineers spend a lot less time hand-writing tests.",
+      "I'm building an AI automation agent that helps out the QA team. It reads Jira tickets and Confluence specs and automatically writes the manual test cases QA would otherwise spend hours on, covering positive, negative, boundary, edge, and validation scenarios. It plugs into our Selenium and Cucumber setup so the team moves a lot faster.",
     tech: ['Java', 'Selenium', 'Cucumber', 'Jira API', 'Confluence API', 'GitHub Copilot'],
   },
   {
@@ -25,21 +25,21 @@ export const experiences: Experience[] = [
     current: false,
     logoSrc: logos.arkra,
     description:
-      "I built the pipelines that pull 10-K and 10-Q filings off SEC EDGAR and use an LLM to extract the numbers that matter, then shipped the clean data to S3. The scraping was easy — making the extractions reliable enough to trust downstream was the real job.",
+      "I built the pipelines that pull 10-K and 10-Q filings off SEC EDGAR and use an LLM to extract the numbers that matter, then shipped the clean data to S3. The scraping was the easy part. The real work was making the extractions reliable enough to trust downstream.",
     tech: ['Python', 'Playwright', 'OpenAI API', 'AWS S3'],
   },
   {
     id: 'seo',
     company: 'SEO (Sponsors for Educational Opportunity)',
-    role: 'Tech Developer',
-    team: 'SEO Tech Developer Program',
-    period: '2025 – Present',
+    role: 'SEO Tech Developer',
+    team: 'SEO Tech Developer Program · Internship',
+    period: 'May 2026 – Present',
     location: 'New York, NY',
     current: true,
     logoSrc: logos.seo,
     description:
-      "Picked for SEO's Tech Developer program — an intense track built around technical interview prep, data structures and algorithms, and mock interviews meant to get you into top software firms. It's basically a gauntlet for the hardest parts of CS recruiting, plus a network of people grinding through it alongside you.",
-    tech: ['Data Structures', 'Algorithms', 'System Design', 'Interview Prep'],
+      "300+ hours of intense CS and software engineering training covering data structures, algorithms, and full-stack web development. We work in SCRUM-style teams to design, test, and ship full-stack apps with Python (Flask), MySQL, and a JavaScript, HTML, and CSS front end. It's a grind, but the kind that makes you fast.",
+    tech: ['Python', 'Flask', 'MySQL', 'JavaScript', 'Data Structures', 'Algorithms'],
   },
   {
     id: 'njit-research',
@@ -49,10 +49,10 @@ export const experiences: Experience[] = [
     period: 'June 2025 – Jan 2026',
     location: 'Newark, NJ',
     current: false,
-    logoSrc: logos.njit,
+    logoSrc: logos.yingWu,
     description:
-      "AI/ML research on NASA solar data. I helped build a Random Forest that sorts solar events into risk levels. Getting a model to hold up on messy scientific data is a different game than benchmarks — the ceiling is data quality, and that's where we spent our time.",
-    tech: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'NASA/SDO Data', 'Binder'],
+      "AI/ML research under Prof. James Wang. I helped build models on NASA solar data, doing literature review, cleaning messy datasets, and testing predictive models in Python to support academic publications. Getting a model to hold up on real scientific data is a different game than benchmarks. The ceiling is data quality, and that's where we spent our time.",
+    tech: ['Python', 'scikit-learn', 'TensorFlow', 'Pandas', 'NumPy', 'NASA/SDO Data'],
   },
   {
     id: 'njit-mentor',
@@ -64,7 +64,7 @@ export const experiences: Experience[] = [
     current: true,
     logoSrc: logos.njit,
     description:
-      "I mentor first-year CS students — Java, Python, debugging, and getting their first real projects off the ground. I also run hackathon prep workshops throughout the year.",
-    tech: ['Java', 'Python', 'Debugging', 'Technical Mentorship'],
+      "I was picked to mentor first-year students in the College of Computing on study strategies, time management, and figuring out where all the resources actually are. Through the Learning Committee I help run workshops and one-on-one check-ins to keep new students engaged and on track.",
+    tech: ['Mentorship', 'Java', 'Python', 'Workshops'],
   },
 ]

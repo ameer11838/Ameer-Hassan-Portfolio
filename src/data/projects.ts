@@ -1,8 +1,7 @@
 import type { Project } from '../types'
 import { projectImages } from './assets'
 
-// TODO: replace these placeholders per project when the links are ready.
-const TODO_GITHUB_LINK = 'TODO_ADD_GITHUB_LINK'
+// GitHub links are set per project below. Demo / case-study links still pending.
 const TODO_DEMO_LINK = 'TODO_ADD_DEMO_LINK'
 const TODO_DETAILS_LINK = 'TODO_ADD_CASE_STUDY_LINK'
 
@@ -16,35 +15,35 @@ export const projects: Project[] = [
     imageSrc: projectImages.recova,
     imageKind: 'screenshot',
     tech: ['React', 'Flask', 'SQLite', 'MediaPipe', 'Claude Haiku'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Recova',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
-    award: '1st Place — NJIT Claude Builder Hackathon',
+    award: '1st Place · NJIT Claude Builder Hackathon',
   },
   {
     id: 'transparency-lens',
     name: 'Transparency Lens',
     description:
-      "A dashboard that shows you, in real time, who's grabbing your data while you browse — and explains each tracker in plain English using an open LLM. The kind of thing I wish existed for everyone, not just people who read privacy policies.",
+      "A dashboard that shows you, in real time, who's grabbing your data while you browse, and explains each tracker in plain English using an open LLM. The kind of thing I wish existed for everyone, not just people who read privacy policies.",
     category: 'Hackathons',
     imageSrc: projectImages.transparencyLens,
     imageKind: 'screenshot',
     tech: ['React', 'Node.js', 'MongoDB Atlas', 'Snowflake', 'WebSockets', 'Gemma'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Transparency-Lens',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
-    award: 'Best Use of MongoDB — KeanUHackThis 2026',
+    award: 'Best Use of MongoDB · KeanUHackThis 2026',
   },
   {
     id: 'brain-tumor',
     name: 'Brain Tumor Classifier',
     description:
-      "A model that reads MRI scans and calls the tumor type, north of 90% accuracy. I trained custom CNNs with transfer learning in TensorFlow and Keras, then pushed the numbers up with data augmentation and regularization. I also wired in Gemini 1.5 Flash so it explains each prediction in plain English — so someone who isn't a radiologist can actually follow why it said what it said.",
+      "A model that reads MRI scans and calls the tumor type, north of 90% accuracy. I trained custom CNNs with transfer learning in TensorFlow and Keras, then pushed the numbers up with data augmentation and regularization. I also wired in Gemini 1.5 Flash so it explains each prediction in plain English, so someone who isn't a radiologist can actually follow why it said what it said.",
     category: 'AI/ML',
     imageSrc: projectImages.brainTumor,
     imageKind: 'mark',
     tech: ['Python', 'TensorFlow', 'Keras', 'CNNs', 'Transfer Learning', 'Gemini 1.5 Flash'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Brain-Tumor-Classifacation-System-',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },
@@ -57,7 +56,7 @@ export const projects: Project[] = [
     imageSrc: projectImages.aiCodeEditor,
     imageKind: 'screenshot',
     tech: ['TypeScript', 'React', 'Node.js', 'OpenAI API', 'PostgreSQL', 'Judge0'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/AI-Code-Editor',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },
@@ -70,7 +69,7 @@ export const projects: Project[] = [
     imageSrc: projectImages.masjidPay,
     imageKind: 'mark',
     tech: ['Java', 'Spring Boot', 'React', 'SQL', 'REST APIs'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/MasjidPay',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },
@@ -78,12 +77,12 @@ export const projects: Project[] = [
     id: 'inventory',
     name: 'Inventory Management',
     description:
-      "A web-based inventory dashboard for small businesses. Admins log in and manage product categories and items behind a proper auth wall — nothing flashy, just a clean tool that does exactly what it says. I built it in plain PHP and MySQL on purpose, to really understand the fundamentals before reaching for a framework.",
+      "A web-based inventory dashboard for small businesses. Admins log in and manage product categories and items behind a proper auth wall. Nothing flashy, just a clean tool that does exactly what it says. I built it in plain PHP and MySQL on purpose, to really understand the fundamentals before reaching for a framework.",
     category: 'Web Apps',
     imageSrc: projectImages.inventory,
     imageKind: 'screenshot',
     tech: ['PHP', 'MySQL', 'HTML / CSS', 'Auth'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Inventory-Managment-App',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },
@@ -96,7 +95,7 @@ export const projects: Project[] = [
     imageSrc: projectImages.discordChat,
     imageKind: 'mark',
     tech: ['React', 'Convex', 'WebSockets', 'WebRTC', 'Tailwind CSS'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Discord-Clone',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },
@@ -104,12 +103,12 @@ export const projects: Project[] = [
     id: 'solar-physics',
     name: 'Solar Physics Classifier',
     description:
-      "A research project that sorts NASA solar data into risk levels. We trained a Random Forest on SDO datasets — but most of the work was cleaning messy scientific data until the model was actually worth trusting.",
+      "A research project that sorts NASA solar data into risk levels. We trained a Random Forest on SDO datasets, but most of the work was cleaning messy scientific data until the model was actually worth trusting.",
     category: 'Research',
     imageSrc: projectImages.solarPhysics,
     imageKind: 'mark',
     tech: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'NASA/SDO Data', 'Binder'],
-    githubUrl: TODO_GITHUB_LINK,
+    githubUrl: 'https://github.com/ameer11838/Solar-Activity-Classifer-',
     demoUrl: TODO_DEMO_LINK,
     detailsUrl: TODO_DETAILS_LINK,
   },

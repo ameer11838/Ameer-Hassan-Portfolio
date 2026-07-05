@@ -13,10 +13,6 @@ export default function Footer() {
             <p className="text-white font-semibold text-[20px] tracking-tight mb-3" style={{ letterSpacing: '-0.02em' }}>
               Thanks for reading.
             </p>
-            <p className="text-[13.5px] max-w-sm leading-[1.65]" style={{ color: 'var(--text-3)' }}>
-              Built by hand with React, TypeScript, and Framer Motion — mostly late at night with a
-              game on in the background.
-            </p>
           </div>
 
           {/* Nav */}
@@ -45,10 +41,10 @@ export default function Footer() {
 
         <div className="mt-14 pt-6 flex flex-col sm:flex-row items-baseline justify-between gap-3" style={{ borderTop: '1px solid var(--hairline)' }}>
           <p className="text-[11.5px]" style={{ color: 'var(--text-4)', letterSpacing: '0.06em' }}>
-            © {new Date().getFullYear()} Ameer Hassan · Newark, NJ
+            © {new Date().getFullYear()} Ameer Hassan · New York Metro Area
           </p>
           <p className="italic-serif text-[13px]" style={{ color: 'var(--text-4)' }}>
-            — end of file
+            end of file
           </p>
         </div>
       </div>

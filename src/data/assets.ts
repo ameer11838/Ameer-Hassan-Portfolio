@@ -7,9 +7,10 @@
  */
 
 // ── Real Company / Organization Logos ───────────────────────────
-import fiservLogo         from '../assets/logos/real/fiserv.webp'
+import fiservLogo         from '../assets/logos/real/fiserv-logo.jpeg'
 import arkraLogo          from '../assets/logos/real/arkra.png'
 import njitLogo           from '../assets/logos/real/njit.jpeg'
+import yingWuLogo         from '../assets/logos/real/ying-wu.jpeg'
 import seoLogo            from '../assets/logos/real/seo.jpeg'
 import bnyLogo            from '../assets/logos/real/bny.jpeg'
 import bttLogo            from '../assets/logos/real/break-through-tech.jpeg'
@@ -35,6 +36,7 @@ export const logos = {
   fiserv:       fiservLogo,
   arkra:        arkraLogo,
   njit:         njitLogo,
+  yingWu:       yingWuLogo,
   seo:          seoLogo,
   bny:          bnyLogo,
   btt:          bttLogo,
@@ -63,3 +65,10 @@ export const projectImages = {
  */
 export const profilePhoto = '/headshot.jpg'
 export const profilePhotoFallback = '/profile-pic-4.png'
+
+// Personal photos.
+export { default as sunsetPhoto } from '../assets/sunset.jpg'   // Home flip — back
+export { default as paccPhoto }   from '../assets/pacc.jpg'      // Home flip — front
+export { default as boatPhoto }   from '../assets/boat.jpg'      // About base
+export { default as gradPhoto }   from '../assets/grad.jpg'      // (unused — kept available)
+export { default as caliPhoto }   from '../assets/cali.jpg'      // About reveal

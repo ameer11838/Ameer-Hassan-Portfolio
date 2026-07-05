@@ -39,9 +39,6 @@ export default function Navbar() {
           className="group flex items-center gap-2 shrink-0 text-[14px] font-semibold tracking-tight text-white"
         >
           Ameer Hassan
-          <span className="text-[12px] font-normal" style={{ color: 'var(--text-4)' }}>
-            /Portfolio
-          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -52,7 +49,7 @@ export default function Navbar() {
                 to={to}
                 className={({ isActive }) =>
                   `relative flex items-center rounded-md px-3 py-1.5 text-[13.5px] font-medium transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'text-neutral-500 hover:text-white'
+                    isActive ? 'text-white' : 'nav-link text-neutral-500 hover:text-white'
                   }`
                 }
               >

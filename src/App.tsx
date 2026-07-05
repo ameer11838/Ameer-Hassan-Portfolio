@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/Layout'
+import Preloader from './components/Preloader'
+import { hasWelcomed, markWelcomed } from './intro'
 import Home from './pages/Home'
 import About from './pages/About'
 import Experience from './pages/Experience'
@@ -27,8 +30,19 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  // Show the welcome screen once per browser session.
+  const [intro, setIntro] = useState(() => !hasWelcomed())
+
   return (
     <BrowserRouter>
+      <AnimatePresence>
+        {intro && (
+          <Preloader
+            key="preloader"
+            onDone={() => { markWelcomed(); setIntro(false) }}
+          />
+        )}
+      </AnimatePresence>
       <Layout>
         <AnimatedRoutes />
       </Layout>
