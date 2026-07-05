@@ -26,14 +26,16 @@ function DateStamp({ children }: { children: React.ReactNode }) {
 }
 
 function Wordmark({ children }: { children: React.ReactNode }) {
+  const len = typeof children === "string" ? children.length : 0;
+  const long = len > 16;
   return (
     <h2
       className="text-white font-semibold"
       style={{
-        fontSize: "clamp(30px, 4vw, 46px)",
-        letterSpacing: "0.14em",
+        fontSize: long ? "clamp(17px, 2vw, 26px)" : "clamp(30px, 4vw, 46px)",
+        letterSpacing: long ? "0.06em" : "0.14em",
         textTransform: "uppercase",
-        lineHeight: 1,
+        lineHeight: long ? 1.25 : 1,
       }}
     >
       {children}
@@ -58,7 +60,7 @@ function LogoPlate({
   if (variant === "full") {
     return (
       <div
-        className="relative overflow-hidden"
+        className="logo-tile relative overflow-hidden"
         style={{ aspectRatio: ratio, borderRadius: 4 }}
       >
         <img src={src} alt={alt} className="h-full w-full object-cover" />
@@ -69,7 +71,7 @@ function LogoPlate({
   // `plate` — a mark that needs a light background to read.
   return (
     <div
-      className="relative flex items-center justify-center overflow-hidden"
+      className="logo-tile relative flex items-center justify-center overflow-hidden"
       style={{
         aspectRatio: ratio,
         background: "#F4F4F5",
@@ -184,9 +186,21 @@ function ExperienceEntry({
 const ENTRIES = [
   { id: "fiserv", wordmark: "Fiserv", logo: "full" as const },
   { id: "arkra", wordmark: "Arkra", logo: "plate" as const },
-  { id: "njit-research", wordmark: "NJIT YWCC", logo: "full" as const },
-  { id: "seo", wordmark: "SEO", logo: "plate" as const },
-  { id: "njit-mentor", wordmark: "NJIT", logo: "full" as const },
+  {
+    id: "njit-research",
+    wordmark: "NJIT Ying Wu College of Computing",
+    logo: "full" as const,
+  },
+  {
+    id: "seo",
+    wordmark: "Sponsors for Educational Opportunity (SEO)",
+    logo: "plate" as const,
+  },
+  {
+    id: "njit-mentor",
+    wordmark: "NJIT Learning Communities",
+    logo: "full" as const,
+  },
 ];
 
 // ══════════════════════════════════════════════════════

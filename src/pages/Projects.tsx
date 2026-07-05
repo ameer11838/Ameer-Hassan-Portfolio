@@ -96,13 +96,27 @@ function CardImage({
   radius?: number
 }) {
   return (
+    <div style={{ perspective: '900px' }}>
     <div
-      className="relative overflow-hidden group"
-      style={{ aspectRatio: ratio, borderRadius: radius, border: '1px solid var(--hairline)' }}
+      className="relative overflow-hidden group transition-transform duration-200 ease-out will-change-transform"
+      style={{
+        aspectRatio: ratio,
+        borderRadius: radius,
+        border: '1px solid var(--hairline)',
+        transform: 'rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))',
+      }}
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect()
+        const px = (e.clientX - r.left) / r.width
+        const py = (e.clientY - r.top) / r.height
         e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
         e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+        e.currentTarget.style.setProperty('--ry', `${(px - 0.5) * 9}deg`)
+        e.currentTarget.style.setProperty('--rx', `${-(py - 0.5) * 9}deg`)
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.setProperty('--rx', '0deg')
+        e.currentTarget.style.setProperty('--ry', '0deg')
       }}
     >
       <ProjectCover project={project} />
@@ -128,6 +142,7 @@ function CardImage({
           </span>
         </div>
       )}
+    </div>
     </div>
   )
 }
