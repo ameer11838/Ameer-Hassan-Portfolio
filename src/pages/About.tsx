@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import { skillGroups } from "../data/skills";
 import { SKILL_META, FALLBACK_META } from "../data/skillIcons";
-import { logos, profilePhotoFallback, boatPhoto, gradPhoto } from "../data/assets";
+import { logos, profilePhotoFallback, boatPhoto, fiservHeadshot } from "../data/assets";
 
 // A single tech chip: brand icon (in colour) + label, on charcoal.
 function SkillChip({ name }: { name: string }) {
@@ -73,35 +73,35 @@ export default function About() {
         <div className="grid gap-16 lg:grid-cols-[340px_1fr] items-start mb-24">
           {/* Portrait */}
           <motion.aside {...rise} className="lg:sticky lg:top-24">
-            {/* Flip card — Boat on the front, California on the back (hover to flip) */}
+            {/* Flip card — Fiserv headshot on the front, Boat on the back (hover to flip) */}
             <div className="group mb-5" style={{ perspective: "1400px" }}>
               <div
                 className="relative w-full [transform-style:preserve-3d] transition-transform duration-700 ease-out group-hover:[transform:rotateY(180deg)]"
                 style={{ aspectRatio: "4/5" }}
               >
-                {/* front — Boat */}
+                {/* front — Fiserv headshot */}
                 <div
                   className="absolute inset-0 overflow-hidden [backface-visibility:hidden]"
+                  style={{ borderRadius: 4, border: "1px solid var(--hairline-2)" }}
+                >
+                  <img
+                    src={fiservHeadshot}
+                    alt="Ameer — Fiserv headshot"
+                    className="h-full w-full object-cover object-center"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = profilePhotoFallback;
+                    }}
+                  />
+                </div>
+                {/* back — Boat */}
+                <div
+                  className="absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
                   style={{ borderRadius: 4, border: "1px solid var(--hairline-2)" }}
                 >
                   <img
                     src={boatPhoto}
                     alt="Ameer by the lake"
                     className="h-full w-full object-cover object-center"
-                  />
-                </div>
-                {/* back — California */}
-                <div
-                  className="absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
-                  style={{ borderRadius: 4, border: "1px solid var(--hairline-2)" }}
-                >
-                  <img
-                    src={gradPhoto}
-                    alt="Ameer at graduation"
-                    className="h-full w-full object-cover object-center"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = profilePhotoFallback;
-                    }}
                   />
                 </div>
               </div>

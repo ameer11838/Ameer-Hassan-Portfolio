@@ -71,4 +71,5 @@ export { default as sunsetPhoto } from '../assets/sunset.jpg'   // Home flip —
 export { default as paccPhoto }   from '../assets/pacc.jpg'      // Home flip — front
 export { default as boatPhoto }   from '../assets/boat.jpg'      // About base
 export { default as gradPhoto }   from '../assets/grad.jpg'      // (unused — kept available)
-export { default as caliPhoto }   from '../assets/cali.jpg'      // About reveal
+export { default as caliPhoto }   from '../assets/cali.jpg'      // (unused — kept available)
+export { default as fiservHeadshot } from '../assets/fiserv-headshot.jpg' // About flip — back
