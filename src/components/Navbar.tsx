@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { label: 'About Me',   to: '/about' },
@@ -25,7 +26,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         borderBottom: scrolled ? '1px solid var(--hairline)' : '1px solid transparent',
-        backgroundColor: scrolled ? 'rgba(9, 9, 11, 0.72)' : 'transparent',
+        backgroundColor: scrolled ? 'var(--nav-bg)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px) saturate(1.2)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px) saturate(1.2)' : 'none',
       }}
@@ -36,7 +37,7 @@ export default function Navbar() {
         <Link
           to="/"
           onClick={() => setOpen(false)}
-          className="group flex items-center gap-2 shrink-0 text-[14px] font-semibold tracking-tight text-white"
+          className="nav-pill group flex items-center gap-2 shrink-0 rounded-md px-2 py-1 -mx-2 text-[14px] font-semibold tracking-tight text-ink"
         >
           Ameer Hassan
         </Link>
@@ -48,8 +49,8 @@ export default function Navbar() {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `relative flex items-center rounded-md px-3 py-1.5 text-[13.5px] font-medium transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'nav-link text-neutral-500 hover:text-white'
+                  `nav-pill relative flex items-center rounded-md px-3 py-1.5 text-[13.5px] font-medium ${
+                    isActive ? 'text-ink' : 'nav-link text-ink-3'
                   }`
                 }
               >
@@ -62,7 +63,7 @@ export default function Navbar() {
                         className="absolute left-3 right-3 -bottom-[1px] h-[2px] rounded-full"
                         style={{
                           background: 'var(--blue-2)',
-                          boxShadow: '0 0 10px rgba(96,165,250,0.85)',
+                          boxShadow: '0 0 10px var(--glow-3)',
                         }}
                         transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                       />
@@ -80,23 +81,24 @@ export default function Navbar() {
             href="/Ameer_Hassan_Resume-.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] font-medium transition-colors"
-            style={{ color: 'var(--text-2)' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--blue-2)')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-2)')}
+            className="nav-pill rounded-md px-3 py-1.5 text-[13px] font-medium text-ink-2"
           >
             Résumé ↗
           </a>
+          <ThemeToggle className="ml-1" />
         </div>
 
         {/* Mobile */}
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className="btn-icon md:hidden"
-        >
-          {open ? <X size={16} /> : <Menu size={16} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="btn-icon"
+          >
+            {open ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -104,7 +106,7 @@ export default function Navbar() {
         className={`md:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}
         style={{
           borderBottom: open ? '1px solid var(--hairline)' : 'none',
-          background: 'rgba(9, 9, 11, 0.98)',
+          background: 'var(--nav-bg-solid)',
           backdropFilter: 'blur(16px)',
         }}
       >
@@ -115,8 +117,8 @@ export default function Navbar() {
               to={to}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
-                  isActive ? 'text-white' : 'text-neutral-400 hover:text-white'
+                `nav-pill block rounded-md px-3 py-2.5 text-[15px] font-medium ${
+                  isActive ? 'text-ink' : 'text-ink-2'
                 }`
               }
             >
@@ -128,7 +130,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="block rounded-md px-3 py-2.5 text-[15px] font-medium"
+            className="nav-pill block rounded-md px-3 py-2.5 text-[15px] font-medium"
             style={{ color: 'var(--blue-2)' }}
           >
             Résumé ↗

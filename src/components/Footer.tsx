@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           {/* Signoff */}
           <div>
-            <p className="text-white font-semibold text-[20px] tracking-tight mb-3" style={{ letterSpacing: '-0.02em' }}>
+            <p className="text-ink font-semibold text-[20px] tracking-tight mb-3" style={{ letterSpacing: '-0.02em' }}>
               Thanks for reading.
             </p>
           </div>

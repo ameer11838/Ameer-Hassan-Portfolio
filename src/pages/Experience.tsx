@@ -30,7 +30,7 @@ function Wordmark({ children }: { children: React.ReactNode }) {
   const long = len > 16;
   return (
     <h2
-      className="text-white font-semibold"
+      className="text-ink font-semibold"
       style={{
         fontSize: long ? "clamp(17px, 2vw, 26px)" : "clamp(30px, 4vw, 46px)",
         letterSpacing: long ? "0.06em" : "0.14em",
@@ -74,7 +74,7 @@ function LogoPlate({
       className="logo-tile relative flex items-center justify-center overflow-hidden"
       style={{
         aspectRatio: ratio,
-        background: "#F4F4F5",
+        background: "var(--plate)",
         borderRadius: 4,
       }}
     >
@@ -149,7 +149,7 @@ function ExperienceEntry({
             reverse ? "md:order-1 md:pr-14" : "md:order-2 md:pl-14"
           }`}
         >
-          <p className="text-center md:text-left text-[16px] font-semibold text-white tracking-tight mb-2">
+          <p className="text-center md:text-left text-[16px] font-semibold text-ink tracking-tight mb-2">
             {exp.role}
           </p>
           <p
@@ -244,7 +244,7 @@ function EditorialLogoTile({
       >
         {item.period}
       </p>
-      <p className="text-white font-semibold text-[15.5px] tracking-tight leading-snug group-hover:text-blue-300 transition-colors">
+      <p className="text-ink font-semibold text-[15.5px] tracking-tight leading-snug group-hover:text-accent-soft transition-colors">
         {item.organization}
       </p>
       <p className="text-[13px] mt-1 mb-3" style={{ color: "var(--text-3)" }}>
@@ -270,7 +270,7 @@ function ProgramsGrid() {
       <div className="text-center mb-16 max-w-[640px] mx-auto">
         <p className="eyebrow mb-5">Programs & Fellowships</p>
         <h2
-          className="text-white font-semibold"
+          className="text-ink font-semibold"
           style={{
             fontSize: "clamp(30px, 4vw, 48px)",
             letterSpacing: "-0.03em",
@@ -301,7 +301,7 @@ function LeadershipGrid() {
       <div className="text-center mb-16 max-w-[640px] mx-auto">
         <p className="eyebrow mb-5">Leadership</p>
         <h2
-          className="text-white font-semibold"
+          className="text-ink font-semibold"
           style={{
             fontSize: "clamp(30px, 4vw, 48px)",
             letterSpacing: "-0.03em",
@@ -342,7 +342,7 @@ export default function Experience() {
             a personal record so far
           </p>
           <h1
-            className="display text-white"
+            className="display text-ink"
             style={{ fontSize: "clamp(64px, 10vw, 152px)" }}
           >
             Experience

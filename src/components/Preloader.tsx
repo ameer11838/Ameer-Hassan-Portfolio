@@ -41,7 +41,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
     >
       {/* Top — signature */}
       <div className="flex items-baseline justify-between">
-        <span className="text-[14px] font-semibold tracking-tight text-white">
+        <span className="text-[14px] font-semibold tracking-tight text-ink">
           Ameer Hassan
         </span>
         <span className="italic-serif text-[13px]" style={{ color: 'var(--text-4)' }}>New York Metro</span>
@@ -63,7 +63,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
       {/* Bottom — counter + progress bar */}
       <div>
         <div
-          className="tabular-nums text-white font-semibold leading-none mb-6"
+          className="tabular-nums text-ink font-semibold leading-none mb-6"
           style={{ fontSize: 'clamp(72px, 16vw, 220px)', letterSpacing: '-0.05em' }}
         >
           {pct}<span style={{ color: 'var(--text-4)' }}>%</span>
@@ -71,7 +71,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
         <div className="relative h-[2px] w-full overflow-hidden" style={{ background: 'var(--hairline)' }}>
           <div
             className="absolute inset-y-0 left-0"
-            style={{ width: `${pct}%`, background: 'var(--blue-2)', boxShadow: '0 0 12px rgba(96,165,250,0.7)' }}
+            style={{ width: `${pct}%`, background: 'var(--blue-2)', boxShadow: '0 0 12px var(--glow-1)' }}
           />
         </div>
       </div>

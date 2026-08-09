@@ -7,10 +7,19 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
       },
+      // Theme-aware aliases — these resolve to the CSS vars in index.css,
+      // so `text-ink` follows dark/light automatically.
       colors: {
-        surface: '#141414',
-        'surface-2': '#1a1a1a',
-        border: 'rgba(255,255,255,0.06)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-2)',
+        'surface-3': 'var(--surface-3)',
+        border: 'var(--hairline)',
+        ink: 'var(--text)',
+        'ink-2': 'var(--text-2)',
+        'ink-3': 'var(--text-3)',
+        'ink-4': 'var(--text-4)',
+        accent: 'var(--blue-2)',
+        'accent-soft': 'var(--blue-3)',
       },
       keyframes: {
         shimmer: {

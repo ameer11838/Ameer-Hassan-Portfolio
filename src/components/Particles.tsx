@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { subscribeTheme } from '../theme'
 
 /**
  * Slow-drifting specks behind the whole site. No connecting lines.
  * Specks near the cursor gently brighten and glow blue.
  * Base opacity stays low so text is always readable.
+ * Speck color comes from CSS vars, so it flips with the theme.
  */
 export default function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -24,6 +26,20 @@ export default function Particles() {
     let particles: P[] = []
     let raf = 0
     const mouse = { x: -9999, y: -9999, active: false }
+
+    // Palette read straight off the theme tokens in index.css.
+    const palette = { base: '205, 215, 240', lit: '120, 180, 255', alpha: 1 }
+    const readPalette = () => {
+      const s = getComputedStyle(document.documentElement)
+      const base = s.getPropertyValue('--particle').trim()
+      const lit = s.getPropertyValue('--particle-lit').trim()
+      const alpha = parseFloat(s.getPropertyValue('--particle-alpha'))
+      if (base) palette.base = base
+      if (lit) palette.lit = lit
+      if (!Number.isNaN(alpha)) palette.alpha = alpha
+    }
+    readPalette()
+    const unsubscribe = subscribeTheme(readPalette)
 
     const init = () => {
       w = canvas.clientWidth
@@ -65,11 +81,11 @@ export default function Particles() {
 
         if (glow > 0.05) {
           ctx.shadowBlur = 10 * glow
-          ctx.shadowColor = 'rgba(96,165,250,0.9)'
-          ctx.fillStyle = `rgba(120,180,255,${Math.min(1, p.a + glow * 0.55)})`
+          ctx.shadowColor = `rgba(${palette.lit}, 0.9)`
+          ctx.fillStyle = `rgba(${palette.lit}, ${Math.min(1, p.a + glow * 0.55)})`
         } else {
           ctx.shadowBlur = 0
-          ctx.fillStyle = `rgba(205,215,240,${p.a})`
+          ctx.fillStyle = `rgba(${palette.base}, ${p.a * palette.alpha})`
         }
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r + glow * 1.8, 0, Math.PI * 2)
@@ -92,6 +108,7 @@ export default function Particles() {
 
     return () => {
       cancelAnimationFrame(raf)
+      unsubscribe()
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseout', onLeave)
       window.removeEventListener('resize', onResize)

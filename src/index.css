@@ -2,28 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens — near-black + charcoal + soft gray ─── */
+/* ═══════════════════════════════════════════════════════════
+   THEMES
+
+   Each theme only declares "seeds": the background ramp, the
+   text ramp, an accent ramp, --mix (which way contrast goes:
+   white on dark themes, near-black on light ones) and the
+   marquee filter. Everything else is derived once, further
+   down, with color-mix. Add a theme by copying one block and
+   adding an entry to THEMES in src/theme.ts.
+
+   The accent vars are still called --blue-* for historical
+   reasons — they're just "the accent" now.
+   ═════════════════════════════════════════════════════════ */
+
+/* ── Midnight (default) — near-black + charcoal, blue accent */
+:root,
+:root[data-theme='midnight'],
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg:        #09090B;
+  --bg-2:      #0C0C0F;
+  --surface:   #131316;
+  --surface-2: #18181B;
+  --surface-3: #1F1F23;
+  --text:      #FAFAFA;
+  --text-2:    #C1C1C6;
+  --text-3:    #86868C;
+  --text-4:    #55555C;
+  --blue:      #3B82F6;
+  --blue-2:    #60A5FA;
+  --blue-3:    #93C5FD;
+  --mix:       #FFFFFF;
+  --marquee-filter: grayscale(1) brightness(1.5) contrast(0.75);
+}
+
+/* ── Slate — cool navy, sky accent ─────────────────────── */
+:root[data-theme='slate'] {
+  color-scheme: dark;
+  --bg:        #0B1220;
+  --bg-2:      #0E1729;
+  --surface:   #131F35;
+  --surface-2: #17263F;
+  --surface-3: #1E3050;
+  --text:      #F1F5F9;
+  --text-2:    #C3CFDF;
+  --text-3:    #8397AF;
+  --text-4:    #5A6C83;
+  --blue:      #0EA5E9;
+  --blue-2:    #38BDF8;
+  --blue-3:    #7DD3FC;
+  --mix:       #FFFFFF;
+  --marquee-filter: grayscale(1) brightness(1.45) contrast(0.8);
+}
+
+/* ── Forest — deep green, emerald accent ───────────────── */
+:root[data-theme='forest'] {
+  color-scheme: dark;
+  --bg:        #08150F;
+  --bg-2:      #0B1B14;
+  --surface:   #10251B;
+  --surface-2: #142E22;
+  --surface-3: #1B3C2C;
+  --text:      #F0FAF4;
+  --text-2:    #BFD8C9;
+  --text-3:    #84A192;
+  --text-4:    #56705F;
+  --blue:      #10B981;
+  --blue-2:    #34D399;
+  --blue-3:    #6EE7B7;
+  --mix:       #FFFFFF;
+  --marquee-filter: grayscale(1) brightness(1.45) contrast(0.8);
+}
+
+/* ── Plum — inky violet, lavender accent ───────────────── */
+:root[data-theme='plum'] {
+  color-scheme: dark;
+  --bg:        #100D1A;
+  --bg-2:      #141021;
+  --surface:   #1B1630;
+  --surface-2: #211B39;
+  --surface-3: #2C2449;
+  --text:      #F6F3FF;
+  --text-2:    #CCC4E4;
+  --text-3:    #948CB0;
+  --text-4:    #635C7D;
+  --blue:      #8B5CF6;
+  --blue-2:    #A78BFA;
+  --blue-3:    #C4B5FD;
+  --mix:       #FFFFFF;
+  --marquee-filter: grayscale(1) brightness(1.5) contrast(0.75);
+}
+
+/* ── Paper — off-white, deep blue accent ───────────────── */
+:root[data-theme='paper'],
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg:        #FAFAFA;
+  --bg-2:      #F4F4F5;
+  --surface:   #FFFFFF;
+  --surface-2: #F4F4F5;
+  --surface-3: #E8E8EC;
+  --text:      #0A0A0B;
+  --text-2:    #3F3F46;
+  --text-3:    #6B6B73;
+  --text-4:    #9797A0;
+  --blue:      #3B82F6;
+  --blue-2:    #2563EB;
+  --blue-3:    #1D4ED8;
+  --mix:       #09090B;
+  --marquee-filter: grayscale(1) brightness(0.55) contrast(1.15);
+}
+
+/* ── Sand — warm paper, terracotta accent ──────────────── */
+:root[data-theme='sand'] {
+  color-scheme: light;
+  --bg:        #F3EDE3;
+  --bg-2:      #EDE5D8;
+  --surface:   #FBF7F0;
+  --surface-2: #EFE7DA;
+  --surface-3: #E2D7C5;
+  --text:      #1C1710;
+  --text-2:    #4B4237;
+  --text-3:    #7A6E5E;
+  --text-4:    #A2957F;
+  --blue:      #D97706;
+  --blue-2:    #C2410C;
+  --blue-3:    #9A3412;
+  --mix:       #1C1710;
+  --marquee-filter: grayscale(1) brightness(0.6) contrast(1.1);
+}
+
+/* ═══ Derived tokens — same formula for every theme ══════
+   Custom properties resolve lazily, so these read whichever
+   seeds won the cascade on <html>. Declared once, correct
+   for all themes, including ones added later. */
 :root {
-  --bg:          #09090B;
-  --bg-2:        #0C0C0F;
-  --surface:     #131316;
-  --surface-2:   #18181B;
-  --surface-3:   #1F1F23;
-  --hairline:    rgba(255, 255, 255, 0.06);
-  --hairline-2:  rgba(255, 255, 255, 0.10);
-  --hairline-3:  rgba(255, 255, 255, 0.16);
+  --hairline:        color-mix(in srgb, var(--mix) 7%,  transparent);
+  --hairline-2:      color-mix(in srgb, var(--mix) 12%, transparent);
+  --hairline-3:      color-mix(in srgb, var(--mix) 19%, transparent);
+  --chip-bg:         color-mix(in srgb, var(--mix) 4%,  transparent);
+  --scrollbar:       color-mix(in srgb, var(--mix) 13%, transparent);
+  --scrollbar-hover: color-mix(in srgb, var(--mix) 26%, transparent);
 
-  --text:        #FAFAFA;
-  --text-2:      #C1C1C6;
-  --text-3:      #86868C;
-  --text-4:      #55555C;
+  --nav-bg:       color-mix(in srgb, var(--bg) 74%, transparent);  /* scrolled navbar */
+  --nav-bg-solid: color-mix(in srgb, var(--bg) 97%, transparent);  /* mobile drawer */
+  --on-solid:     var(--bg);                                       /* text on a --text-filled button */
+  --solid-hover:  color-mix(in srgb, var(--text) 85%, var(--mix)); /* btn-primary hover fill */
 
-  /* Blue — used sparingly */
-  --blue:        #3B82F6;
-  --blue-2:      #60A5FA;
-  --blue-3:      #93C5FD;
-  --blue-soft:   rgba(96, 165, 250, 0.14);
-  --blue-glow:   rgba(96, 165, 250, 0.35);
+  --selection:    color-mix(in srgb, var(--blue-2) 26%, transparent);
+  --selection-fg: var(--text);
+  --blue-soft:    color-mix(in srgb, var(--blue-2) 13%, transparent);
+  --blue-glow:    color-mix(in srgb, var(--blue-2) 30%, transparent);
+  --glow-1:       color-mix(in srgb, var(--blue-2) 45%, transparent);
+  --glow-2:       color-mix(in srgb, var(--blue-2) 28%, transparent);
+  --glow-3:       color-mix(in srgb, var(--blue-2) 70%, transparent);
+  --tint:         color-mix(in srgb, var(--blue-2) 7%,  transparent);
+  --tint-2:       color-mix(in srgb, var(--blue-2) 15%, transparent);
+  --edge:         color-mix(in srgb, var(--blue-2) 48%, transparent);
+
+  /* Placeholder project cover — the theme's own surface ramp */
+  --cover-1: var(--surface-3);
+  --cover-2: var(--bg-2);
+  --cover-3: var(--bg);
+
+  /* Amber that stays legible either way */
+  --award: color-mix(in srgb, #F59E0B 78%, var(--mix));
+
+  /* Constant regardless of theme */
+  --plate:       #F4F4F5;             /* light plate behind marks-on-white logos */
+  --scrim:       rgba(9, 9, 11, 0.5); /* fade over photographs */
+  --shadow-drop: rgba(9, 9, 11, 0.45);
 }
 
 @layer base {
@@ -40,15 +189,16 @@
     font-size: 16px;
     line-height: 1.55;
     min-height: 100vh;
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
   ::selection {
-    background: rgba(96, 165, 250, 0.28);
-    color: #FFFFFF;
+    background: var(--selection);
+    color: var(--selection-fg);
   }
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
 }
 
 /* ── Editorial serif for accents ─────────────────────── */
@@ -82,13 +232,14 @@
   .btn-primary {
     @apply relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13.5px] font-medium transition-all duration-200;
     background: var(--text);
-    color: #09090B;
+    color: var(--on-solid);
     border: 1px solid var(--text);
   }
   .btn-primary:hover {
-    background: #FFFFFF;
+    background: var(--solid-hover);
+    border-color: var(--solid-hover);
     transform: translateY(-1px);
-    box-shadow: 0 10px 30px -10px rgba(96, 165, 250, 0.55), 0 4px 12px -8px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px -10px var(--glow-1), 0 4px 12px -8px var(--shadow-drop);
   }
   .btn-primary:active {
     transform: translateY(0) scale(0.975);
@@ -96,23 +247,24 @@
   }
 
   .btn-ghost {
-    @apply relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13.5px] font-medium text-white transition-all duration-200;
+    @apply relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13.5px] font-medium transition-all duration-200;
     border: 1px solid var(--hairline-2);
     background: transparent;
+    color: var(--text);
   }
   .btn-ghost:hover {
-    border-color: rgba(96, 165, 250, 0.5);
-    background: rgba(96, 165, 250, 0.06);
+    border-color: var(--edge);
+    background: var(--tint);
     color: var(--blue-2);
     transform: translateY(-1px);
-    box-shadow: 0 10px 28px -12px rgba(96, 165, 250, 0.5);
+    box-shadow: 0 10px 28px -12px var(--glow-1);
   }
   .btn-ghost:active {
     transform: translateY(0) scale(0.975);
     transition-duration: 80ms;
   }
   .btn-ghost.--blue:hover {
-    border-color: rgba(96, 165, 250, 0.5);
+    border-color: var(--edge);
     color: var(--blue-2);
   }
 
@@ -123,14 +275,14 @@
     background: transparent;
   }
   .btn-icon:hover {
-    border-color: rgba(96, 165, 250, 0.5);
+    border-color: var(--edge);
     color: var(--blue-2);
-    box-shadow: 0 0 18px -4px rgba(96, 165, 250, 0.5);
+    box-shadow: 0 0 18px -4px var(--glow-1);
   }
 
   .chip {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11.5px] font-medium transition-colors duration-200;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--chip-bg);
     color: var(--text-2);
     border: 1px solid var(--hairline);
   }
@@ -153,7 +305,7 @@
 .link:hover {
   color: var(--blue-2);
   border-color: var(--blue-2);
-  text-shadow: 0 0 16px rgba(96, 165, 250, 0.5);
+  text-shadow: 0 0 16px var(--glow-1);
 }
 
 /* ── Animated nav underline ─────────────────────────── */
@@ -167,18 +319,83 @@
   height: 2px;
   border-radius: 2px;
   background: var(--blue-2);
-  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  box-shadow: 0 0 8px var(--glow-3);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .nav-link:hover::after { transform: scaleX(1); }
 
+/* ── Nav pill — the toolbar lights up under the cursor ── */
+.nav-pill {
+  position: relative;
+  isolation: isolate;
+  transition: color 0.22s ease, text-shadow 0.22s ease,
+    transform 0.28s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.nav-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 8px;
+  background: var(--tint);
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.nav-pill:hover::before {
+  opacity: 1;
+  transform: scale(1);
+  border-color: var(--edge);
+  box-shadow: 0 0 20px -2px var(--glow-1), inset 0 0 14px -6px var(--glow-2);
+}
+.nav-pill:hover {
+  color: var(--blue-2);
+  text-shadow: 0 0 14px var(--glow-1);
+  transform: translateY(-1px);
+}
+.nav-pill:active { transform: translateY(0) scale(0.97); transition-duration: 80ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-pill,
+  .nav-pill::before { transition-duration: 0.01ms; }
+  .nav-pill:hover { transform: none; }
+}
+
+/* ── "Where I've been" logo scroller ─────────────────── */
+/* The native bar is hidden — macOS fades it out when idle, so the
+   strip renders its own rail (.logo-rail) that's always visible. */
+.logo-scroller {
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.logo-scroller::-webkit-scrollbar { display: none; }
+
+.logo-rail {
+  background: var(--hairline);
+  touch-action: none;
+}
+.logo-rail-thumb {
+  background: var(--hairline-3);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  touch-action: none;
+}
+.logo-rail:hover .logo-rail-thumb { background: var(--edge); }
+.logo-rail-thumb:hover,
+.logo-rail-thumb:active {
+  background: var(--blue-2);
+  box-shadow: 0 0 12px var(--glow-2);
+}
+
 /* Blue glow for any element that opts in on hover */
 .glow-hover { transition: color 0.2s ease, text-shadow 0.2s ease; }
 .glow-hover:hover {
   color: var(--blue-2);
-  text-shadow: 0 0 16px rgba(96, 165, 250, 0.55);
+  text-shadow: 0 0 16px var(--glow-1);
 }
 
 /* Logo tile — lifts and glows blue on hover */
@@ -188,7 +405,7 @@
 }
 .logo-tile:hover {
   transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 16px 44px -16px rgba(96, 165, 250, 0.55);
+  box-shadow: 0 16px 44px -16px var(--glow-1);
 }
 .logo-tile img { transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
 .logo-tile:hover img { transform: scale(1.06); }
@@ -229,8 +446,18 @@
   background: var(--blue-2);
   margin-left: 0.04em;
   vertical-align: baseline;
-  box-shadow: 0 0 18px rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 18px var(--glow-1);
   animation: cursor-blink 1.05s steps(1) infinite;
+}
+
+/* Marquee logos — desaturated, tuned per theme (see --marquee-filter) */
+.marquee-logo {
+  filter: var(--marquee-filter);
+  transition: filter 0.5s ease-out, transform 0.5s ease-out;
+}
+.group:hover .marquee-logo {
+  filter: none;
+  transform: scale(1.1);
 }
 
 .tabular-nums { font-variant-numeric: tabular-nums; }

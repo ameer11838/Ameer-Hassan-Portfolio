@@ -55,7 +55,7 @@ export default function About() {
         >
           <p className="eyebrow mb-6">About</p>
           <h1
-            className="display text-white mb-8"
+            className="display text-ink mb-8"
             style={{ fontSize: "clamp(56px, 9vw, 128px)" }}
           >
             Who I am,
@@ -126,7 +126,7 @@ export default function About() {
                 ["Studying at", "NJIT"],
                 ["Working at", "Fiserv"],
                 ["From", "New York Metro"],
-                ["Graduating", "May 2028"],
+                ["Graduating", "Dec 2028"],
                 ["Also into", "Cloud engineering"],
                 ["Off the clock", "Wrestling · UFC · soccer"],
               ].map(([k, v]) => (
@@ -144,7 +144,7 @@ export default function About() {
           {/* Essay */}
           <motion.article {...rise} className="max-w-2xl">
             <p
-              className="text-[22px] leading-[1.55] font-medium tracking-tight text-white mb-8"
+              className="text-[22px] leading-[1.55] font-medium tracking-tight text-ink mb-8"
               style={{ letterSpacing: "-0.01em" }}
             >
               I&apos;m Ameer, a Computer Science student in NJIT&apos;s Honors
@@ -215,7 +215,7 @@ export default function About() {
               style={{ borderLeft: "2px solid var(--blue-2)" }}
             >
               <p
-                className="text-[22px] leading-[1.45] font-medium text-white"
+                className="text-[22px] leading-[1.45] font-medium text-ink"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 &ldquo;Build things that are actually useful, and stay curious
@@ -236,7 +236,7 @@ export default function About() {
               <div className="flex items-center gap-5">
                 <div
                   className="h-16 w-16 shrink-0 rounded-md overflow-hidden flex items-center justify-center"
-                  style={{ background: "#FFFFFF" }}
+                  style={{ background: "var(--plate)" }}
                 >
                   <img
                     src={logos.njit}
@@ -245,7 +245,7 @@ export default function About() {
                   />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-[17px] tracking-tight">
+                  <p className="text-ink font-semibold text-[17px] tracking-tight">
                     New Jersey Institute of Technology
                   </p>
                   <p
@@ -258,7 +258,7 @@ export default function About() {
                     className="text-[12.5px] mt-1"
                     style={{ color: "var(--text-3)" }}
                   >
-                    Albert Dorman Honors College · Class of 2028 · Expected May
+                    Albert Dorman Honors College · Class of 2028 · Expected Dec
                     2028
                   </p>
                 </div>

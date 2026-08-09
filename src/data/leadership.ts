@@ -4,6 +4,18 @@ import { logos } from './assets'
 export const leadership: LeadershipItem[] = [
   // ── PROGRAMS / FELLOWSHIPS ────────────────────────────────
   {
+    id: 'colorstack',
+    title: 'Community Member & Fellow',
+    organization: 'ColorStack',
+    type: 'National CS Community · Remote',
+    period: 'Aug 2026 – Present',
+    logoSrc: logos.colorstack,
+    logoContain: 0.72,
+    description:
+      "A national community of Black and Latinx computer science students working to break into tech. I plug into the member network for recruiting intel, technical prep, and events with partner companies, and I share what I learn with other students coming up behind me.",
+    category: 'programs',
+  },
+  {
     id: 'btt',
     title: 'AI/ML Fellow',
     organization: 'Break Through Tech AI',

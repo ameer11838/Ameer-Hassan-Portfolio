@@ -30,11 +30,11 @@ function ProjectCover({ project }: { project: Project }) {
     return (
       <div
         className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.015]"
-        style={{ background: 'radial-gradient(120% 120% at 50% 0%, #1a1a1f 0%, #0e0e11 55%, #0a0a0c 100%)' }}
+        style={{ background: 'radial-gradient(120% 120% at 50% 0%, var(--cover-1) 0%, var(--cover-2) 55%, var(--cover-3) 100%)' }}
       >
         <p className="eyebrow mb-4" style={{ color: 'var(--text-4)' }}>{project.category}</p>
         <p
-          className="serif text-white leading-[0.95]"
+          className="serif text-ink leading-[0.95]"
           style={{ fontSize: 'clamp(44px, 7vw, 92px)', letterSpacing: '-0.03em' }}
         >
           {project.name}
@@ -70,7 +70,7 @@ function GithubLink({ project }: { project: Project; compact?: boolean }) {
       rel="noopener noreferrer"
       className="group/gh inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[15px] font-medium transition-all duration-200"
       style={{ border: '1px solid var(--hairline-2)', color: 'var(--text)' }}
-      onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(96,165,250,0.5)'; e.currentTarget.style.color = 'var(--blue-2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--edge)'; e.currentTarget.style.color = 'var(--blue-2)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--hairline-2)'; e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.transform = 'translateY(0)' }}
     >
       <GitBranch size={17} />
@@ -124,17 +124,17 @@ function CardImage({
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: 'radial-gradient(260px circle at var(--mx) var(--my), rgba(96,165,250,0.16), transparent 65%)' }}
+        style={{ background: 'radial-gradient(260px circle at var(--mx) var(--my), var(--tint-2), transparent 65%)' }}
       />
       {project.award && (
         <div className="absolute top-4 left-4">
           <span
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10.5px] font-medium tracking-widest uppercase"
             style={{
-              background: 'rgba(9, 9, 11, 0.72)',
+              background: 'var(--nav-bg)',
               backdropFilter: 'blur(10px)',
               border: '1px solid var(--hairline-3)',
-              color: '#FCD34D',
+              color: 'var(--award)',
             }}
           >
             <Trophy size={10} strokeWidth={2} />
@@ -163,7 +163,7 @@ function SplitLaunch({ project, index, reverse }: { project: Project; index: num
             {String(index).padStart(2, '0')} · {project.category}
           </p>
           <h3
-            className="text-white font-semibold tracking-tight mb-4"
+            className="text-ink font-semibold tracking-tight mb-4"
             style={{ fontSize: 'clamp(28px, 3.6vw, 46px)', letterSpacing: '-0.03em', lineHeight: 1.05 }}
           >
             {project.name}
@@ -200,7 +200,7 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
           <p className="eyebrow mb-2">
             {String(index).padStart(2, '0')} · {project.category}
           </p>
-          <h3 className="text-white font-semibold text-[22px] tracking-tight leading-tight mb-2 group-hover:text-blue-300 transition-colors">
+          <h3 className="text-ink font-semibold text-[22px] tracking-tight leading-tight mb-2 group-hover:text-accent-soft transition-colors">
             {project.name}
           </h3>
           <div className="max-w-2xl mb-4">
@@ -240,7 +240,7 @@ export default function Projects() {
           className="mb-24"
         >
           <p className="eyebrow mb-6">Selected Work</p>
-          <h1 className="display text-white mb-8" style={{ fontSize: 'clamp(56px, 9vw, 128px)' }}>
+          <h1 className="display text-ink mb-8" style={{ fontSize: 'clamp(56px, 9vw, 128px)' }}>
             Things I&apos;ve
             <br />
             <span className="italic-serif" style={{ fontWeight: 500, color: 'var(--text-2)' }}>shipped.</span>

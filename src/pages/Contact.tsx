@@ -60,7 +60,7 @@ export default function Contact() {
         >
           <p className="eyebrow mb-6">Contact</p>
           <h1
-            className="display text-white mb-8"
+            className="display text-ink mb-8"
             style={{ fontSize: "clamp(56px, 9vw, 128px)" }}
           >
             Say hello.
@@ -106,7 +106,7 @@ export default function Contact() {
                   <Icon
                     size={18}
                     style={{ color: "var(--text-3)" }}
-                    className="transition-colors group-hover:text-white"
+                    className="transition-colors group-hover:text-ink"
                   />
 
                   <div>
@@ -120,7 +120,7 @@ export default function Contact() {
                     >
                       {label}
                     </p>
-                    <p className="text-[20px] font-medium text-white group-hover:text-blue-300 transition-colors leading-tight tracking-tight">
+                    <p className="text-[20px] font-medium text-ink group-hover:text-accent-soft transition-colors leading-tight tracking-tight">
                       {value}
                     </p>
                     <p
@@ -144,7 +144,7 @@ export default function Contact() {
             {/* Signature */}
             <div className="mt-16 max-w-md">
               <p
-                className="text-[22px] leading-[1.45] font-medium text-white"
+                className="text-[22px] leading-[1.45] font-medium text-ink"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 &ldquo;If you&apos;re working on something interesting, I&apos;d
@@ -172,7 +172,7 @@ export default function Contact() {
               <p className="eyebrow mb-2" style={{ color: "var(--blue-2)" }}>
                 Or write directly
               </p>
-              <h2 className="text-white font-semibold text-[22px] tracking-tight">
+              <h2 className="text-ink font-semibold text-[22px] tracking-tight">
                 Send a message
               </h2>
               <p

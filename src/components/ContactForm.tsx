@@ -21,30 +21,30 @@ export default function ContactForm() {
   }
 
   const fieldStyle = {
-    background: 'rgba(59,130,246,0.03)',
-    border: '1px solid rgba(59,130,246,0.15)',
-    color: '#FFFFFF',
+    background: 'var(--chip-bg)',
+    border: '1px solid var(--hairline-2)',
+    color: 'var(--text)',
   }
 
   const fieldClass =
-    'w-full rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-600 transition-all duration-200 outline-none'
+    'w-full rounded-lg px-4 py-3 text-sm text-ink placeholder:text-ink-4 transition-all duration-200 outline-none'
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'rgba(59,130,246,0.5)'
-    e.currentTarget.style.background = 'rgba(59,130,246,0.06)'
-    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)'
+    e.currentTarget.style.borderColor = 'var(--edge)'
+    e.currentTarget.style.background = 'var(--tint)'
+    e.currentTarget.style.boxShadow = '0 0 0 3px var(--blue-soft)'
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'rgba(59,130,246,0.15)'
-    e.currentTarget.style.background = 'rgba(59,130,246,0.03)'
+    e.currentTarget.style.borderColor = 'var(--hairline-2)'
+    e.currentTarget.style.background = 'var(--chip-bg)'
     e.currentTarget.style.boxShadow = 'none'
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-xs font-medium" style={{ color: '#94A3B8' }}>
+        <label htmlFor="name" className="mb-1.5 block text-xs font-medium" style={{ color: 'var(--text-3)' }}>
           Name
         </label>
         <input
@@ -57,7 +57,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-xs font-medium" style={{ color: '#94A3B8' }}>
+        <label htmlFor="email" className="mb-1.5 block text-xs font-medium" style={{ color: 'var(--text-3)' }}>
           Email
         </label>
         <input
@@ -70,7 +70,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-xs font-medium" style={{ color: '#94A3B8' }}>
+        <label htmlFor="message" className="mb-1.5 block text-xs font-medium" style={{ color: 'var(--text-3)' }}>
           Message
         </label>
         <textarea
@@ -87,7 +87,7 @@ export default function ContactForm() {
         {sent ? 'Opening email client…' : 'Send Message'}
       </button>
 
-      <p className="text-center text-xs" style={{ color: '#475569' }}>
+      <p className="text-center text-xs" style={{ color: 'var(--text-4)' }}>
         Opens your email client with the message pre-filled.
       </p>
     </form>

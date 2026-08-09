@@ -6,14 +6,14 @@ export const experiences: Experience[] = [
     id: 'fiserv',
     company: 'Fiserv',
     role: 'Software Engineering Intern',
-    team: 'Enterprise Marketplace Solutions',
+    team: 'Commerce Hub Automation Team',
     period: 'June 2026 – Present',
     location: 'Berkeley Heights, NJ',
     current: true,
     logoSrc: logos.fiserv,
     description:
-      "I'm building an AI automation agent that helps out the QA team. It reads Jira tickets and Confluence specs and automatically writes the manual test cases QA would otherwise spend hours on, covering positive, negative, boundary, edge, and validation scenarios. It plugs into our Selenium and Cucumber setup so the team moves a lot faster.",
-    tech: ['Java', 'Selenium', 'Cucumber', 'Jira API', 'Confluence API', 'GitHub Copilot'],
+      "I built a 3-agent AI system that automates product onboarding QA for Commerce Hub, cutting up to 3 hours of manual test-case writing and framework analysis. A Test Case Agent and a Product Boarding Agent pull from Jira, Confluence, Zephyr, and Fiserv Dev Studio to generate 5 categories of test cases, read the existing automation code, and add or update product frameworks. A Master Agent orchestrates the whole thing, from test generation to scenario classification to feature-file creation. I also took the initiative to build a UI on top of it so nontechnical QA users could actually use it.",
+    tech: ['Java', 'Selenium', 'Cucumber', 'LLMs', 'Jira', 'Confluence', 'Zephyr'],
   },
   {
     id: 'arkra',

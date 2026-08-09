@@ -19,6 +19,7 @@ import codepathLogo       from '../assets/logos/real/codepath.jpeg'
 import anyLogo            from '../assets/logos/real/america-needs-you.jpeg'
 import icpcLogo           from '../assets/logos/real/icpc.jpeg'
 import headstarterLogo    from '../assets/logos/real/headstarter.png'
+import colorstackLogo     from '../assets/logos/real/colorstack.png'
 import isotopeLogo        from '../assets/logos/isotope.svg'
 
 // ── Project Images ──────────────────────────────────────────────
@@ -45,6 +46,7 @@ export const logos = {
   any:          anyLogo,
   icpc:         icpcLogo,
   headstarter:  headstarterLogo,
+  colorstack:   colorstackLogo,
   isotope:      isotopeLogo,
 }
 

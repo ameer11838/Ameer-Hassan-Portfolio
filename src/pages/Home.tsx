@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -76,11 +76,11 @@ function TeaserCover({ project }: { project: Project }) {
         className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.015]"
         style={{
           background:
-            "radial-gradient(120% 120% at 50% 0%, #1a1a1f 0%, #0e0e11 60%, #0a0a0c 100%)",
+            "radial-gradient(120% 120% at 50% 0%, var(--cover-1) 0%, var(--cover-2) 60%, var(--cover-3) 100%)",
         }}
       >
         <p
-          className="serif text-white"
+          className="serif text-ink"
           style={{
             fontSize: "clamp(30px, 4vw, 44px)",
             letterSpacing: "-0.03em",
@@ -131,7 +131,7 @@ function WorkTeaser({ project, index }: { project: Project; index: number }) {
             className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
             style={{
               background:
-                "linear-gradient(180deg, transparent 60%, rgba(9,9,11,0.5))",
+                "linear-gradient(180deg, transparent 60%, var(--scrim))",
             }}
           />
         </div>
@@ -147,7 +147,7 @@ function WorkTeaser({ project, index }: { project: Project; index: number }) {
             >
               {project.category}
             </p>
-            <h3 className="text-[20px] font-semibold text-white tracking-tight leading-tight truncate group-hover:text-blue-300 transition-colors">
+            <h3 className="text-[20px] font-semibold text-ink tracking-tight leading-tight truncate group-hover:text-accent-soft transition-colors">
               {project.name}
             </h3>
             <p className="text-[13px] mt-1" style={{ color: "var(--text-3)" }}>
@@ -162,6 +162,183 @@ function WorkTeaser({ project, index }: { project: Project; index: number }) {
         </div>
       </Link>
     </motion.div>
+  );
+}
+
+// ── "Where I've been" strip ──────────────────────────────
+// Drifts on its own, but it's a real scroller: drag it, flick it,
+// or grab the scrollbar to get through every logo right away.
+const STRIP_LOGOS = [
+  logos.fiserv,
+  logos.arkra,
+  logos.colorstack,
+  logos.njit,
+  logos.bny,
+  logos.seo,
+  logos.btt,
+  logos.headstarter,
+  logos.shpe,
+  logos.any,
+  logos.codepath,
+  logos.icpc,
+];
+
+const DRIFT_PX = 0.5; // per frame
+
+function LogoStrip() {
+  const scroller = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const thumb = useRef<HTMLDivElement>(null);
+  const dragLogos = useRef<number | null>(null);
+  const dragThumb = useRef<number | null>(null);
+
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const drift = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Never stops — hovering, dragging, and working the scrollbar all
+    // ride on top of the drift instead of pausing it.
+    let pos = el.scrollLeft;
+    let applied = pos;
+    let frame = 0;
+
+    const tick = () => {
+      // The list is rendered twice, so wrapping at the halfway point is seamless.
+      const half = el.scrollWidth / 2;
+      if (half > 0) {
+        // Anything that moved the scroller out from under us (drag, wheel,
+        // keyboard) wins; the browser's own sub-pixel rounding doesn't.
+        if (Math.abs(el.scrollLeft - applied) > 1) pos = el.scrollLeft;
+        if (drift) pos += DRIFT_PX;
+        if (pos >= half) pos -= half;
+        if (pos < 0) pos += half;
+        el.scrollLeft = pos;
+        applied = el.scrollLeft;
+
+        const t = thumb.current;
+        if (t) {
+          const ratio = Math.min(1, el.clientWidth / half);
+          t.style.width = `${ratio * 100}%`;
+          t.style.left = `${(pos / half) * (1 - ratio) * 100}%`;
+        }
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // ── drag the logos themselves ──
+  const onLogosDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    // Touch and trackpad get native panning; only the mouse needs drag-to-scroll.
+    if (!el || e.pointerType !== "mouse") return;
+    dragLogos.current = e.clientX;
+    el.setPointerCapture(e.pointerId);
+  };
+
+  const onLogosMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    if (!el || dragLogos.current === null) return;
+    el.scrollLeft -= e.clientX - dragLogos.current;
+    dragLogos.current = e.clientX;
+  };
+
+  const onLogosUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragLogos.current === null) return;
+    dragLogos.current = null;
+    scroller.current?.releasePointerCapture(e.pointerId);
+  };
+
+  // ── drag the scrollbar ──
+  const onThumbDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    dragThumb.current = e.clientX;
+    thumb.current?.setPointerCapture(e.pointerId);
+  };
+
+  const onThumbMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    const rail = track.current;
+    if (!el || !rail || dragThumb.current === null) return;
+    const half = el.scrollWidth / 2;
+    // A full sweep of the rail covers one full pass of the logos.
+    el.scrollLeft += ((e.clientX - dragThumb.current) / rail.clientWidth) * half;
+    dragThumb.current = e.clientX;
+  };
+
+  const onThumbUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragThumb.current === null) return;
+    dragThumb.current = null;
+    thumb.current?.releasePointerCapture(e.pointerId);
+  };
+
+  // ── click anywhere on the rail to jump there ──
+  const onTrackDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    const rail = track.current;
+    if (!el || !rail) return;
+    const rect = rail.getBoundingClientRect();
+    const half = el.scrollWidth / 2;
+    el.scrollLeft = ((e.clientX - rect.left) / rect.width) * half;
+  };
+
+  return (
+    <div>
+      <div className="relative">
+        <div
+          ref={scroller}
+          className="logo-scroller overflow-x-auto cursor-grab active:cursor-grabbing"
+          onPointerDown={onLogosDown}
+          onPointerMove={onLogosMove}
+          onPointerUp={onLogosUp}
+          onPointerCancel={onLogosUp}
+        >
+          <div className="flex w-max items-center gap-16 whitespace-nowrap">
+            {[...STRIP_LOGOS, ...STRIP_LOGOS].map((logo, i) => (
+              <div
+                key={i}
+                className="group h-14 shrink-0 flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300"
+              >
+                <img
+                  src={logo}
+                  alt=""
+                  draggable={false}
+                  className="marquee-logo h-full max-w-[120px] object-contain select-none"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className="absolute inset-y-0 left-0 w-32 pointer-events-none"
+          style={{ background: "linear-gradient(to right, var(--bg), transparent)" }}
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-32 pointer-events-none"
+          style={{ background: "linear-gradient(to left, var(--bg), transparent)" }}
+        />
+      </div>
+
+      {/* Our own scrollbar — macOS hides the native one until you scroll. */}
+      <div
+        ref={track}
+        onPointerDown={onTrackDown}
+        className="logo-rail relative mt-8 h-[6px] w-full cursor-pointer rounded-full"
+      >
+        <div
+          ref={thumb}
+          onPointerDown={onThumbDown}
+          onPointerMove={onThumbMove}
+          onPointerUp={onThumbUp}
+          onPointerCancel={onThumbUp}
+          className="logo-rail-thumb absolute top-0 h-full rounded-full"
+          style={{ width: "20%", left: 0 }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -199,7 +376,7 @@ export default function Home() {
             </motion.p>
 
             <h1
-              className="display text-white"
+              className="display text-ink"
               style={{ fontSize: "clamp(64px, 11vw, 168px)" }}
             >
               <TypedName />
@@ -346,8 +523,10 @@ export default function Home() {
               <Link to="/experience" className="link">
                 Fiserv
               </Link>{" "}
-              that helps out the QA team. It automates the creation of manual
-              test cases, so QA doesn&apos;t spend hours writing them by hand.
+              that helps out the QA team. Three agents read the tickets, specs,
+              and existing automation code, then write the manual test cases and
+              update the product frameworks, so QA doesn&apos;t spend hours on it
+              by hand.
             </p>
           </div>
         </div>
@@ -364,7 +543,7 @@ export default function Home() {
           <div>
             <p className="eyebrow mb-4">Selected Work</p>
             <h2
-              className="text-white font-semibold tracking-tight"
+              className="text-ink font-semibold tracking-tight"
               style={{
                 fontSize: "clamp(28px, 3.5vw, 40px)",
                 letterSpacing: "-0.03em",
@@ -413,57 +592,7 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="overflow-hidden relative">
-          <div className="animate-marquee flex items-center gap-16 whitespace-nowrap will-change-transform">
-            {[
-              logos.fiserv,
-              logos.arkra,
-              logos.njit,
-              logos.bny,
-              logos.seo,
-              logos.btt,
-              logos.headstarter,
-              logos.shpe,
-              logos.any,
-              logos.codepath,
-              logos.icpc,
-              logos.fiserv,
-              logos.arkra,
-              logos.njit,
-              logos.bny,
-              logos.seo,
-              logos.btt,
-              logos.headstarter,
-              logos.shpe,
-              logos.any,
-              logos.codepath,
-              logos.icpc,
-            ].map((logo, i) => (
-              <div
-                key={i}
-                className="group h-14 shrink-0 flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300"
-              >
-                <img
-                  src={logo}
-                  alt=""
-                  className="h-full max-w-[120px] object-contain grayscale brightness-150 contrast-75 transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100 group-hover:scale-110"
-                />
-              </div>
-            ))}
-          </div>
-          <div
-            className="absolute inset-y-0 left-0 w-32 pointer-events-none"
-            style={{
-              background: "linear-gradient(to right, var(--bg), transparent)",
-            }}
-          />
-          <div
-            className="absolute inset-y-0 right-0 w-32 pointer-events-none"
-            style={{
-              background: "linear-gradient(to left, var(--bg), transparent)",
-            }}
-          />
-        </div>
+        <LogoStrip />
       </section>
 
       {/* ══════════════════════════════════════════════════════
@@ -476,7 +605,7 @@ export default function Home() {
         <div className="pt-16 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div className="max-w-2xl">
             <p
-              className="text-white font-semibold tracking-tight"
+              className="text-ink font-semibold tracking-tight"
               style={{
                 fontSize: "clamp(32px, 4.5vw, 56px)",
                 letterSpacing: "-0.035em",
