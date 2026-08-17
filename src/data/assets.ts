@@ -25,6 +25,7 @@ import isotopeLogo        from '../assets/logos/isotope.svg'
 // ── Project Images ──────────────────────────────────────────────
 // Real screenshots where they exist; product marks/logos otherwise.
 import recovaImage             from '../assets/projects/recova.png'              // screenshot
+import prooflyImage            from '../assets/projects/proofly.svg'            // mark
 import aiCodeEditorImage       from '../assets/projects/ai-code-editor.png'      // screenshot
 import transparencyLensImage   from '../assets/projects/transparency-lens.png'   // screenshot
 import inventoryImage          from '../assets/projects/inventory.png'           // screenshot
@@ -56,6 +57,7 @@ export const projectImages = {
   solarPhysics:     solarPhysicsImage,
   masjidPay:        masjidPayImage,
   recova:           recovaImage,
+  proofly:          prooflyImage,
   transparencyLens: transparencyLensImage,
   inventory:        inventoryImage,
   brainTumor:       brainTumorImage,
