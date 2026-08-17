@@ -5,8 +5,17 @@ import {
   SiPandas, SiNumpy, SiSelenium, SiTailwindcss, SiGit, SiGithub, SiJupyter,
   SiPostman, SiJira, SiConfluence, SiMongodb, SiPostgresql, SiMysql,
   SiSqlite, SiSnowflake, SiVercel, SiConvex, SiOpenjdk,
+  SiPhp, SiExpress, SiKeras, SiCucumber, SiClaude, SiGooglegemini,
+  SiGoogle, SiWebrtc, SiNasa,
 } from 'react-icons/si'
-import { Database, Cloud, Code2, Package } from 'lucide-react'
+import { FaAws } from 'react-icons/fa6'
+import {
+  Database, Code2, Package,
+  BrainCircuit, Network, Layers, Repeat, Sparkles,
+  Waypoints, Radio, RadioTower, Lock, Terminal,
+  Boxes, Binary, Users, Presentation,
+  PersonStanding, ScanLine, TestTube2,
+} from 'lucide-react'
 
 type Meta = { Icon: IconType; color: string }
 
@@ -44,7 +53,8 @@ export const SKILL_META: Record<string, Meta> = {
   Confluence:      { Icon: SiConfluence,  color: '#2684FF' },
   Binder:          { Icon: Package,       color: NEUTRAL },
 
-  'AWS S3':        { Icon: Cloud,         color: '#FF9900' },
+  AWS:             { Icon: FaAws,         color: '#FF9900' },
+  'AWS S3':        { Icon: FaAws,         color: '#FF9900' },
   'MongoDB Atlas': { Icon: SiMongodb,     color: '#47A248' },
   PostgreSQL:      { Icon: SiPostgresql,  color: '#5A8FD4' },
   MySQL:           { Icon: SiMysql,       color: '#4479A1' },
@@ -52,6 +62,43 @@ export const SKILL_META: Record<string, Meta> = {
   Snowflake:       { Icon: SiSnowflake,   color: '#29B5E8' },
   Vercel:          { Icon: SiVercel,      color: NEUTRAL },
   Convex:          { Icon: SiConvex,      color: '#F3502F' },
+
+  // ── Below: the stack labels that only appear on Experience / Projects ──
+
+  // Languages, frameworks, testing
+  PHP:             { Icon: SiPhp,         color: '#8A91C7' },
+  Express:         { Icon: SiExpress,     color: NEUTRAL },
+  Keras:           { Icon: SiKeras,       color: '#E8483F' },
+  MediaPipe:       { Icon: PersonStanding, color: '#30B39A' },
+  Playwright:      { Icon: ScanLine,      color: '#4CB050' },
+  Cucumber:        { Icon: SiCucumber,    color: '#23D96C' },
+  Zephyr:          { Icon: TestTube2,     color: '#2684FF' },
+  Judge0:          { Icon: Terminal,      color: NEUTRAL },
+
+  // Models & ML concepts
+  LLMs:                { Icon: BrainCircuit,   color: '#A78BFA' },
+  'Neural Networks':   { Icon: Network,        color: '#A78BFA' },
+  CNNs:                { Icon: Layers,         color: '#A78BFA' },
+  'Transfer Learning': { Icon: Repeat,         color: '#A78BFA' },
+  'Claude Haiku':      { Icon: SiClaude,       color: '#D97757' },
+  'Gemini 1.5 Flash':  { Icon: SiGooglegemini, color: '#5B8DEF' },
+  Gemma:               { Icon: SiGoogle,       color: '#5B8DEF' },
+  'OpenAI API':        { Icon: Sparkles,       color: '#10A37F' },
+
+  // Protocols & plumbing
+  'REST APIs':          { Icon: Waypoints,  color: NEUTRAL },
+  'GitHub REST API':    { Icon: SiGithub,   color: NEUTRAL },
+  WebSockets:           { Icon: Radio,      color: '#7DD3FC' },
+  'Server-Sent Events': { Icon: RadioTower, color: '#7DD3FC' },
+  WebRTC:               { Icon: SiWebrtc,   color: NEUTRAL },
+  Auth:                 { Icon: Lock,       color: '#E0B341' },
+
+  // Fundamentals, data sources, and the non-code stack labels
+  'Data Structures': { Icon: Boxes,        color: NEUTRAL },
+  Algorithms:        { Icon: Binary,       color: NEUTRAL },
+  Mentorship:        { Icon: Users,        color: NEUTRAL },
+  Workshops:         { Icon: Presentation, color: NEUTRAL },
+  'NASA/SDO Data':   { Icon: SiNasa,       color: '#5B8DEF' },
 }
 
 export const FALLBACK_META: Meta = { Icon: Code2, color: NEUTRAL }

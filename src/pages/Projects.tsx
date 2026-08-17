@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { GitBranch, ArrowUpRight, Trophy } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import ExpandableText from '../components/ExpandableText'
+import TechChip from '../components/TechChip'
 import { projects } from '../data/projects'
 import type { Project } from '../types'
 
@@ -175,7 +176,7 @@ function SplitLaunch({ project, index, reverse }: { project: Project; index: num
           />
           <div className="flex flex-wrap gap-1.5 mb-6">
             {project.tech.map((t) => (
-              <span key={t} className="chip">{t}</span>
+              <TechChip key={t} label={t} />
             ))}
           </div>
           <GithubLink project={project} />
@@ -208,7 +209,7 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
           </div>
           <div className="flex flex-wrap gap-1.5">
             {project.tech.slice(0, 5).map((t) => (
-              <span key={t} className="chip">{t}</span>
+              <TechChip key={t} label={t} />
             ))}
           </div>
         </div>

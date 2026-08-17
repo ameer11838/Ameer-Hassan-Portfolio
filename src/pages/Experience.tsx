@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import ExpandableText from "../components/ExpandableText";
+import TechChip from "../components/TechChip";
 import { experiences } from "../data/experiences";
 import { leadership } from "../data/leadership";
 import type { LeadershipItem } from "../types";
@@ -170,9 +171,7 @@ function ExperienceEntry({
           <p className="eyebrow mb-4">The Stack</p>
           <div className="flex flex-wrap gap-1.5">
             {exp.tech.map((t) => (
-              <span key={t} className="chip">
-                {t}
-              </span>
+              <TechChip key={t} label={t} />
             ))}
           </div>
         </div>
