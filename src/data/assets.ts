@@ -28,6 +28,7 @@ import recovaImage             from '../assets/projects/recova.png'             
 import prooflyImage            from '../assets/projects/proofly.svg'            // mark
 import aiCodeEditorImage       from '../assets/projects/ai-code-editor.png'      // screenshot
 import transparencyLensImage   from '../assets/projects/transparency-lens.png'   // screenshot
+import fareflowImage           from '../assets/projects/fareflow.png'            // mark
 import inventoryImage          from '../assets/projects/inventory.png'           // screenshot
 import brainTumorImage         from '../assets/projects/brain-tumor.png'         // mark
 import masjidPayImage          from '../assets/projects/masjidpay.webp'          // mark
@@ -59,6 +60,7 @@ export const projectImages = {
   recova:           recovaImage,
   proofly:          prooflyImage,
   transparencyLens: transparencyLensImage,
+  fareflow:         fareflowImage,
   inventory:        inventoryImage,
   brainTumor:       brainTumorImage,
 }

@@ -21,6 +21,19 @@ export const projects: Project[] = [
     award: '1st Place · NJIT Claude Builder Hackathon',
   },
   {
+    id: 'fareflow',
+    name: 'FareFlow',
+    description:
+      "Why pay a flat ticket price when you only rode five stops? FareFlow charges you for the ride you actually took, not some fixed fare somebody guessed at. Plan your trip, compare routes, track what you're spending, and watch the price adjust live for transfers, discounts, fare caps, disruptions, even bailing out early. There's an AI assistant built in that'll break down exactly why you're being charged what you're being charged. I built it because I was sick of transit apps treating the price like a black box.",
+    category: 'FinTech',
+    imageSrc: projectImages.fareflow,
+    imageKind: 'mark',
+    tech: ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'JWT', 'TomTom API'],
+    githubUrl: 'https://github.com/ameer11838/FareFlow',
+    demoUrl: TODO_DEMO_LINK,
+    detailsUrl: TODO_DETAILS_LINK,
+  },
+  {
     id: 'transparency-lens',
     name: 'Transparency Lens',
     description:

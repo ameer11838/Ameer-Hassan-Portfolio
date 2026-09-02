@@ -353,7 +353,7 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
-  const featured = ["recova", "transparency-lens", "proofly"].map(
+  const featured = ["recova", "fareflow", "proofly"].map(
     (id) => projects.find((x) => x.id === id)!
   );
 
