@@ -225,7 +225,7 @@ function IndexRow({ project, index }: { project: Project; index: number }) {
 //  PAGE
 // ══════════════════════════════════════════════════════
 export default function Projects() {
-  const splitIds = ['recova', 'fareflow', 'proofly', 'solar-physics']
+  const splitIds = ['recova', 'fareflow', 'proofly', 'transparency-lens', 'solar-physics']
   const splits = splitIds.map((id) => projects.find((p) => p.id === id)!)
   const rest = projects.filter((p) => !splitIds.includes(p.id))
 
