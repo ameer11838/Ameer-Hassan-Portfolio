@@ -21,6 +21,12 @@ import icpcLogo           from '../assets/logos/real/icpc.jpeg'
 import headstarterLogo    from '../assets/logos/real/headstarter.png'
 import colorstackLogo     from '../assets/logos/real/colorstack.png'
 import isotopeLogo        from '../assets/logos/isotope.svg'
+import knicksLogo         from '../assets/logos/knicks.svg'
+import ufcLogo            from '../assets/logos/ufc.svg'
+import hikingPhoto        from '../assets/interests/hiking.jpg'
+import pickleballPhoto    from '../assets/interests/pickleball.jpg'
+import spikeballPhoto     from '../assets/interests/spikeball.jpg'
+import volunteeringPhoto  from '../assets/interests/volunteering-youth-camp-2026.jpg'
 
 // ── Project Images ──────────────────────────────────────────────
 // Real screenshots where they exist; product marks/logos otherwise.
@@ -50,6 +56,18 @@ export const logos = {
   headstarter:  headstarterLogo,
   colorstack:   colorstackLogo,
   isotope:      isotopeLogo,
+}
+
+export const interestLogos = {
+  knicks: knicksLogo,
+  ufc: ufcLogo,
+}
+
+export const interestPhotos = {
+  hiking: hikingPhoto,
+  pickleball: pickleballPhoto,
+  spikeball: spikeballPhoto,
+  volunteering: volunteeringPhoto,
 }
 
 export const projectImages = {

@@ -3,7 +3,14 @@ import { ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import { skillGroups } from "../data/skills";
 import { SKILL_META, FALLBACK_META } from "../data/skillIcons";
-import { logos, profilePhotoFallback, boatPhoto, fiservHeadshot } from "../data/assets";
+import {
+  logos,
+  interestLogos,
+  interestPhotos,
+  profilePhotoFallback,
+  boatPhoto,
+  fiservHeadshot,
+} from "../data/assets";
 
 // A single tech chip: brand icon (in colour) + label, on charcoal.
 function SkillChip({ name }: { name: string }) {
@@ -41,6 +48,56 @@ const rise = {
   viewport: { once: true, margin: "-80px" },
   transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] },
 };
+
+const fanInterests = [
+  {
+    name: "New York Knicks",
+    category: "Basketball",
+    note: "I have been a huge Knicks fan for years, and I try to catch every game I can.",
+    logo: interestLogos.knicks,
+    accent: "#f58426",
+    logoClass: "h-32 sm:h-36",
+  },
+  {
+    name: "UFC",
+    category: "Fight nights",
+    note: "I love following UFC and talking through the matchups before every fight card.",
+    logo: interestLogos.ufc,
+    accent: "#d20a0a",
+    logoClass: "h-20 sm:h-24",
+  },
+];
+
+const activeInterests = [
+  {
+    name: "Hiking",
+    category: "Fresh air",
+    note: "I love hiking for the quiet, the challenge, and views like this one.",
+    image: interestPhotos.hiking,
+    alt: "A hiking trail overlooking a river and wooded mountains",
+  },
+  {
+    name: "Volunteering",
+    category: "Youth Camp",
+    note: "This photo is from the 2026 Youth Camp. I love it so much because I used to be a camper, and now I get to return as a counselor.",
+    image: interestPhotos.volunteering,
+    alt: "Ameer and fellow counselors at the 2026 Youth Camp",
+  },
+  {
+    name: "Pickleball",
+    category: "On the court",
+    note: "I started playing for fun, but I get competitive as soon as a game begins.",
+    image: interestPhotos.pickleball,
+    alt: "A pickleball game in progress",
+  },
+  {
+    name: "Spikeball",
+    category: "At the park",
+    note: "A good afternoon for me is being at the park with friends and playing a competitive game of Spikeball.",
+    image: interestPhotos.spikeball,
+    alt: "Friends playing a roundnet game in a park",
+  },
+];
 
 export default function About() {
   return (
@@ -128,7 +185,7 @@ export default function About() {
                 ["From", "New York Metro"],
                 ["Graduating", "Dec 2028"],
                 ["Also into", "Cloud engineering"],
-                ["Off the clock", "Wrestling · UFC · soccer"],
+                ["Off the clock", "Knicks · UFC · trails · rec sports"],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline gap-3">
                   <dt className="shrink-0" style={{ color: "var(--text-4)" }}>
@@ -178,11 +235,12 @@ export default function About() {
               style={{ color: "var(--text-2)" }}
             >
               When I&apos;m away from my computer, you&apos;ll probably find me
-              watching UFC, following MMA, playing basketball or soccer,
-              wrestling, or hanging out with friends. I also spend time
-              volunteering at my local mosque, which has taught me the
-              importance of giving back to my community and staying connected to
-              something bigger than myself.
+              watching UFC, following MMA, or keeping up with the Knicks. I&apos;m
+              a huge Knicks fan, and basketball is one of the sports I enjoy
+              most. On a free day, I&apos;m usually hiking, playing pickleball or
+              Spikeball, or volunteering at my local mosque and its youth camp.
+              Giving back has taught me the importance of staying connected to
+              my community and being part of something bigger than myself.
             </p>
 
             <p
@@ -208,6 +266,117 @@ export default function About() {
               with friends, or chasing another random idea that popped into my
               head, I&apos;m always looking for what&apos;s next.
             </p>
+
+            {/* Interests */}
+            <motion.section {...rise} className="mb-16 pt-4">
+              <div className="mb-7">
+                <p className="eyebrow mb-3">Beyond the code</p>
+                <h2 className="text-ink text-[30px] font-semibold tracking-[-0.035em]">
+                  The things that feel like me.
+                </h2>
+                <p
+                  className="mt-3 max-w-xl text-[15px] leading-relaxed"
+                  style={{ color: "var(--text-3)" }}
+                >
+                  I love building things, but I&apos;m at my best when life has a
+                  little competition, a lot of fresh air, and good people around.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {fanInterests.map((interest) => (
+                  <motion.div
+                    key={interest.name}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className="group relative overflow-hidden rounded-xl p-5"
+                    style={{
+                      background: `linear-gradient(145deg, color-mix(in srgb, ${interest.accent} 12%, var(--surface)), var(--surface))`,
+                      border: "1px solid var(--hairline-2)",
+                    }}
+                  >
+                    <div
+                      aria-hidden
+                      className="absolute -right-10 -top-12 h-36 w-36 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-35"
+                      style={{ background: interest.accent }}
+                    />
+                    <div className="relative flex h-44 items-center justify-center px-5">
+                      <img
+                        src={interest.logo}
+                        alt={`${interest.name} logo`}
+                        className={`${interest.logoClass} w-full object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-[1.04]`}
+                      />
+                    </div>
+                    <div
+                      className="relative mt-2 pt-4"
+                      style={{ borderTop: "1px solid var(--hairline)" }}
+                    >
+                      <p
+                        className="mb-1 text-[10.5px] font-semibold uppercase tracking-[0.14em]"
+                        style={{ color: interest.accent }}
+                      >
+                        {interest.category}
+                      </p>
+                      <h3 className="text-ink text-[17px] font-semibold tracking-tight">
+                        {interest.name}
+                      </h3>
+                      <p className="mt-1 text-[12.5px]" style={{ color: "var(--text-3)" }}>
+                        {interest.note}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mb-5 mt-12 flex items-center gap-4">
+                <p className="eyebrow shrink-0">How I reset</p>
+                <span className="rule flex-1" />
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {activeInterests.map((interest) => (
+                  <motion.article
+                    key={interest.name}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    className="group overflow-hidden rounded-xl"
+                    style={{
+                      background: "var(--surface)",
+                      border: "1px solid var(--hairline-2)",
+                    }}
+                  >
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                      <img
+                        src={interest.image}
+                        alt={interest.alt}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+                        loading="lazy"
+                      />
+                      <div
+                        aria-hidden
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, transparent 55%, rgba(9, 9, 11, 0.35))",
+                        }}
+                      />
+                    </div>
+                    <div className="p-5">
+                      <p className="eyebrow mb-2">{interest.category}</p>
+                      <h3 className="text-ink text-[18px] font-semibold tracking-tight">
+                        {interest.name}
+                      </h3>
+                      <p
+                        className="mt-2 text-[13px] leading-relaxed"
+                        style={{ color: "var(--text-3)" }}
+                      >
+                        {interest.note}
+                      </p>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </motion.section>
 
             {/* Pull-quote */}
             <blockquote
