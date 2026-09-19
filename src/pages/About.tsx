@@ -53,17 +53,33 @@ const fanInterests = [
   {
     name: "New York Knicks",
     category: "Basketball",
-    note: "I have been a huge Knicks fan for years, and I try to catch every game I can.",
+    note: "My basketball team, always.",
     logo: interestLogos.knicks,
     accent: "#f58426",
-    logoClass: "h-32 sm:h-36",
+    logoClass: "h-24 sm:h-28",
   },
   {
     name: "UFC",
-    category: "Fight nights",
-    note: "I love following UFC and talking through the matchups before every fight card.",
+    category: "Mixed martial arts",
+    note: "I never miss a big fight card.",
     logo: interestLogos.ufc,
     accent: "#d20a0a",
+    logoClass: "h-16 sm:h-20",
+  },
+  {
+    name: "Real Madrid",
+    category: "Soccer",
+    note: "The club I follow all season.",
+    logo: interestLogos.realMadrid,
+    accent: "#3e31fa",
+    logoClass: "h-24 sm:h-28",
+  },
+  {
+    name: "New York Giants",
+    category: "Football",
+    note: "Big Blue through every season.",
+    logo: interestLogos.giants,
+    accent: "#4f86d9",
     logoClass: "h-20 sm:h-24",
   },
 ];
@@ -185,7 +201,7 @@ export default function About() {
                 ["From", "New York Metro"],
                 ["Graduating", "Dec 2028"],
                 ["Also into", "Cloud engineering"],
-                ["Off the clock", "Knicks · UFC · trails · rec sports"],
+                ["Off the clock", "Knicks · UFC · Real Madrid · Giants"],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline gap-3">
                   <dt className="shrink-0" style={{ color: "var(--text-4)" }}>
@@ -237,7 +253,8 @@ export default function About() {
               When I&apos;m away from my computer, you&apos;ll probably find me
               watching UFC, following MMA, or keeping up with the Knicks. I&apos;m
               a huge Knicks fan, and basketball is one of the sports I enjoy
-              most. On a free day, I&apos;m usually hiking, playing pickleball or
+              most. I also love football and follow Real Madrid throughout the
+              season. On a free day, I&apos;m usually hiking, playing pickleball or
               Spikeball, or volunteering at my local mosque and its youth camp.
               Giving back has taught me the importance of staying connected to
               my community and being part of something bigger than myself.
@@ -283,13 +300,18 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="mb-5 flex items-center gap-4">
+                <p className="eyebrow shrink-0">Sports I really like</p>
+                <span className="rule flex-1" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                 {fanInterests.map((interest) => (
                   <motion.div
                     key={interest.name}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2 }}
-                    className="group relative overflow-hidden rounded-xl p-5"
+                    className="group relative overflow-hidden rounded-xl p-4"
                     style={{
                       background: `linear-gradient(145deg, color-mix(in srgb, ${interest.accent} 12%, var(--surface)), var(--surface))`,
                       border: "1px solid var(--hairline-2)",
@@ -300,7 +322,7 @@ export default function About() {
                       className="absolute -right-10 -top-12 h-36 w-36 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-35"
                       style={{ background: interest.accent }}
                     />
-                    <div className="relative flex h-44 items-center justify-center px-5">
+                    <div className="relative flex h-32 items-center justify-center px-2">
                       <img
                         src={interest.logo}
                         alt={`${interest.name} logo`}
@@ -317,10 +339,10 @@ export default function About() {
                       >
                         {interest.category}
                       </p>
-                      <h3 className="text-ink text-[17px] font-semibold tracking-tight">
+                      <h3 className="text-ink text-[15px] font-semibold tracking-tight">
                         {interest.name}
                       </h3>
-                      <p className="mt-1 text-[12.5px]" style={{ color: "var(--text-3)" }}>
+                      <p className="mt-1 text-[12px] leading-relaxed" style={{ color: "var(--text-3)" }}>
                         {interest.note}
                       </p>
                     </div>

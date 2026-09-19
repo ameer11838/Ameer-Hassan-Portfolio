@@ -23,6 +23,8 @@ import colorstackLogo     from '../assets/logos/real/colorstack.png'
 import isotopeLogo        from '../assets/logos/isotope.svg'
 import knicksLogo         from '../assets/logos/knicks.svg'
 import ufcLogo            from '../assets/logos/ufc.svg'
+import realMadridLogo     from '../assets/logos/real-madrid.png'
+import giantsLogo         from '../assets/logos/giants.svg'
 import hikingPhoto        from '../assets/interests/hiking.jpg'
 import pickleballPhoto    from '../assets/interests/pickleball.jpg'
 import spikeballPhoto     from '../assets/interests/spikeball.jpg'
@@ -61,6 +63,8 @@ export const logos = {
 export const interestLogos = {
   knicks: knicksLogo,
   ufc: ufcLogo,
+  realMadrid: realMadridLogo,
+  giants: giantsLogo,
 }
 
 export const interestPhotos = {
